@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-mod = Blueprint('siete', __name__)
+mod = Blueprint('site', __name__)
 
 @mod.route('/tst')
 def test():
