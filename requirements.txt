@@ -2,3 +2,5 @@ Flask
 Jinja2
 Flask-APIBlueprint
 Werkzeug
+Flask-WTF
+firebase-admin
