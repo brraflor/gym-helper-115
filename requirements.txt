@@ -4,3 +4,4 @@ Flask-APIBlueprint
 Werkzeug
 Flask-WTF
 firebase-admin
+pymongo
