@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require("body-parser");
 var request = require('request');
-
+var firebase = require("firebase");
 var port = 8080;
 var path = require('path');
 
@@ -25,7 +25,7 @@ app.get('/login', function(req,res){
 });
 
 app.get('/login/loggedIn', function(req,res){
-  res.render('loggedIn');
+  res.redirect('/');
 });
 
 
