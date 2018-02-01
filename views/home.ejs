@@ -34,7 +34,8 @@
             var providerData = user.providerData;
             user.getIdToken().then(function(accessToken) {
               document.getElementById('sign-in-status').textContent = 'Signed in';
-              document.getElementById('sign-in').textContent = 'Sign out';
+              document.getElementById('name').textContent = "Welcome "+displayName;
+	      document.getElementById('uid').textContent = uid;
               document.getElementById('account-details').textContent = JSON.stringify({
                 displayName: displayName,
                 email: email,
@@ -56,16 +57,14 @@
           console.log(error);
         });
       };
-
       window.addEventListener('load', function() {
         initApp()
       });
     </script>
   </head>
   <body>
-    <h1>Welcome to My Awesome App</h1>
+    <h1 id="name"></h1>
     <div id="sign-in-status"></div>
-    <div id="sign-in"></div>
-    <div id="account-details"></div>
+    <div id="uid"></div>
   </body>
 </html>

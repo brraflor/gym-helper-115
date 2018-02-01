@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 
 //Home Route
 app.get('/', function(req,res){
-  res.render('home');
+   res.render('home');
 });
 
 app.get('/login', function(req,res){
