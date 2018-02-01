@@ -24,7 +24,7 @@ app.get('/login', function(req,res){
   res.render('login');
 });
 
-app.get('/loggedIn', function(req,res){
+app.get('/login/loggedIn', function(req,res){
   res.render('loggedIn');
 });
 

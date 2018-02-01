@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <img src="@/assets/swlogo.png" alt="Vuetify.js" class="mb-5 mt-5" width="50%">
+        <img src="@/assets/TrollFace.jpg" alt="Vuetify.js" class="mb-5 mt-5" width="50%">
         Page 1
         <blockquote>
           &#8220;Innovations towards a Healthy Lifestyle.&#8221;
