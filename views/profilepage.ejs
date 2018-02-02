@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sign Up Page</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('public', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+  </head>
+
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
+    authDomain: "gymapp-fd949.firebaseapp.com",
+    databaseURL: "https://gymapp-fd949.firebaseio.com",
+    projectId: "gymapp-fd949",
+    storageBucket: "gymapp-fd949.appspot.com",
+    messagingSenderId: "871486720421"
+  };
+  firebase.initializeApp(config);
+</script>
+
+  <body>
+    <h1>Profile Page</h1>
+
+      <!--Sign Up Page -->
+
+  <form method="post" action="/tst">
+    <div class="form-row">
+      <div class="col">
+        <input name="first" type="text" class="form-control" placeholder="First name">
+      </div>
+      <div class="col">
+        <input name="last" type="text" class="form-control" placeholder="Last name">
+      </div>
+      <div class="col">
+        <input name="age" type="text" class="form-control" placeholder="Age">
+      </div>
+    </div>
+
+    <div class="form-row align-items-center">
+      <div class="col-auto my-1">
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Gender</label>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+          <option selected>Choose...</option>
+          <option value="1">Female</option>
+          <option value="2">Male</option>
+          <option value="3">Other</option>
+        </select>
+      </div>
+
+
+
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input name="city" type="text" class="form-control" id="inputCity">
+    </div>
+    <!-- <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div> -->
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">State</label>
+        <input name="state" type="text" class="form-control" id="inputCity">
+      </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input name="zip"type="value" class="form-control" id="inputZip">
+    </div>
+  </div>
+  <!-- <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div> -->
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('public', filename='js/bootstrap.min.js' ) }}"></script>
+  </body>
+</html>
