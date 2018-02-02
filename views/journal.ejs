@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sample FirebaseUI App</title>
+    <!-- *******************************************************************************************
+       * TODO(DEVELOPER): Paste the initialization snippet from:
+       * Firebase Console > Overview > Add Firebase to your web app. *
+       ***************************************************************************************** -->
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
+    authDomain: "gymapp-fd949.firebaseapp.com",
+    databaseURL: "https://gymapp-fd949.firebaseio.com",
+    projectId: "gymapp-fd949",
+    storageBucket: "gymapp-fd949.appspot.com",
+    messagingSenderId: "871486720421"
+  };
+    firebase.initializeApp(config);
+  </script>
+  <script>
+
+  var userBio = null;//replace with data from frontend here
+  var userActivities = null;//replace with data from frontend
+  var otherData = null;//replace with data from frontend
+  var database = firebase.database();
+  firebase.database().ref('users/' + uid).set({
+    bio: userBio,
+    activities: userActivities,
+    other: otherData
+  });
+  </script>
+  </head>
+  <body>
+    <h1>Welcome to My Awesome App</h1>
+    <pre id="object"></pre>
+    <div id="sign-in-status"></div>
+    <div id="sign-in"></div>
+    <div id="account-details"></div>
+  </body>
+</html>
