@@ -47,6 +47,12 @@
                 providerData: providerData
               }, null, '  ');
             });
+            var database = firebase.database();
+            firebase.database().ref('users/' + uid).set({
+    		username: user.displayName,
+    		email: user.email,
+    		profile_picture : user.photoURL
+  });
           } else {
             // User is signed out.
             document.getElementById('sign-in-status').textContent = 'Signed out';
@@ -67,4 +73,5 @@
     <div id="sign-in-status"></div>
     <div id="uid"></div>
   </body>
+
 </html>
