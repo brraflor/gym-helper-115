@@ -90,27 +90,16 @@ app.post("/tst", (req, res) => {
   var city = data.city;
   var state = data.state;
   var zip = data.zip;
+console.log('got vars');
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user){
+      console.log('user detected');
+    } else {
+      console.log('user not detected');
+    };
+  });
 
-  function(){
-    firebase.auth().onAuthStateChanged(function(user){
-      if(user){
-        var uid = user.uid;
 
-        firebase.database().ref('users/temp').set({
-          first: data.first,
-          last: data.last,
-          age: data.age,
-          address: data.address,
-          city: data.city,
-          state: data.state,
-          zip: data.zip
-        });
-      }
-      else{
-
-      }
-    });
-  };
 
 
   console.log(name);
