@@ -18,6 +18,12 @@
   };
   firebase.initializeApp(config);
 </script>
+<script>
+  var uid = firebase.user().getIdToken();
+  document.getElementById('uid') = uid;
+  console.log(uid);
+
+</script>
 
   <body>
     <nav>
@@ -88,6 +94,8 @@
     </div>
   </div> -->
   <button type="submit" class="btn btn-primary">Sign in</button>
+  <input name="uid" type="hidden" id="inputUID"></input>
+
 </form>
 
 
