@@ -65,7 +65,12 @@ app.post("/tst", (req, res) => {
 
         firebase.database().ref('users/temp').set({
           first: data.first,
-          last: data.last
+          last: data.last,
+          age: data.age,
+          address: data.address,
+          city: data.city,
+          state: data.state,
+          zip: data.zip
         });
       }
       else{
