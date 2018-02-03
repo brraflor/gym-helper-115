@@ -5,6 +5,7 @@ var firebase = require("firebase");
 var port = 8080;
 var path = require('path');
 var app = express();
+app.use(bodyParser.json());
 
 var config = {
   apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
@@ -14,7 +15,7 @@ var config = {
   storageBucket: "gymapp-fd949.appspot.com",
   messagingSenderId: "871486720421"
 };
-var fb = firebase.initializeApp(config);
+firebase.initializeApp(config);
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -34,12 +35,55 @@ app.get('/login', function(req,res){
   res.render('login');
 });
 
-app.get('/login/loggedIn', function(req,res){
-  res.redirect('/');
+app.get('/loggedIn', function(req,res){
+  res.render('loggedIn');
 });
 
 app.get('/journal', function(req,res){
   res.render('journal');
+});
+
+app.get('/profilepage', function(req,res){
+  res.render('profilepage');
+});
+
+app.post("/tst", (req, res) => {
+  var data= req.body;
+  //name
+  var name = data.first;
+  var last = data.last;
+  var age = data.age;
+  var address = data.address;
+  var city = data.city;
+  var state = data.state;
+  var zip = data.zip;
+
+  function(){
+    firebase.auth().onAuthStateChanged(function(user){
+      if(user){
+        var uid = user.uid;
+
+        firebase.database().ref('users/temp').set({
+          first: data.first,
+          last: data.last
+        });
+      }
+      else{
+
+      }
+    });
+  };
+
+
+  console.log(name);
+  console.log(last);
+  console.log(age);
+  console.log(address);
+  console.log(city);
+  console.log(state);
+  console.log(zip);
+  res.send("printed")
+
 });
 
 
