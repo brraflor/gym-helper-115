@@ -34,13 +34,40 @@ app.get('/login', function(req,res){
   res.render('login');
 });
 
-app.get('/login/loggedIn', function(req,res){
-  res.redirect('/');
-});
-
 app.get('/journal', function(req,res){
   res.render('journal');
 });
+
+app.get('/loggedIn', function(req,res){
+  res.render('loggedIn');
+});
+
+app.get('/profilepage', function(req,res){
+  res.render('profilepage');
+});
+
+app.post("/tst", (req, res) => {
+  var data= req.body;
+  //name
+  var name = data.first;
+  var last = data.last;
+  var age = data.age;
+  var address = data.address;
+  var city = data.city;
+  var state = data.state;
+  var zip = data.zip;
+
+  console.log(name);
+  console.log(last);
+  console.log(age);
+  console.log(address);
+  console.log(city);
+  console.log(state);
+  console.log(zip);
+  res.send("printed")
+
+});
+
 
 app.get('/profile', function(req,res){
   res.render('profile');
