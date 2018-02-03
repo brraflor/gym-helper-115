@@ -42,7 +42,9 @@ app.get('/journal', function(req,res){
   res.render('journal');
 });
 
-
+app.get('/profile', function(req,res){
+  res.render('profile');
+});
 
 
 
