@@ -68,10 +68,20 @@ app.post("/tst", (req, res) => {
 
 });
 
-
 app.get('/profile', function(req,res){
   res.render('profile');
 });
+
+module.exports = {
+tst:  function(){
+  return 'hello';
+},
+tsttwo: function(one, two){
+    return one + two;
+  }
+}
+
+
 
 
 
