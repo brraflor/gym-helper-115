@@ -7,6 +7,15 @@ var path = require('path');
 var app = express();
 app.use(bodyParser.json());
 
+var admin = require("firebase-admin");
+
+var serviceAccount = require("private/gymapp-fd949-firebase-adminsdk-f6l0b-48cc6350b8.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://gymapp-fd949.firebaseio.com"
+});
+
 var config = {
   apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
   authDomain: "gymapp-fd949.firebaseapp.com",
@@ -57,15 +66,7 @@ app.post("/tst", (req, res) => {
   var city = data.city;
   var state = data.state;
   var zip = data.zip;
-  var uid = data.uid;// does not work
-  console.log(uid);
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user){
-      console.log('user detected');
-    } else {
-      console.log('user not detected');
-    };
-  });
+  var uid = firebase.user().getIdToken();
   firebase.database().ref('users/test').set({
     test: 'test'
   });
