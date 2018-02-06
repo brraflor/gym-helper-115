@@ -8,20 +8,28 @@ var port = 8080;
 var serverPort = 3000;
 var path = require('path');
 var app = express();
-//Socket IO
+
+//^^^^^^^^^^^^^^^^^ Socket IO ^^^^^^^^^^^^^^^^^^^^
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
+
 io.on('connection', function(socket){
-console.log('a user connectd');
-socket.on('disconnect', function(socket){
+  console.log('a user connected');
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+    //console.log('message: ' + msg);
+  });
+  socket.on('disconnect', function(socket){
     console.log('user disconnected');
   });
 });
 
+
 server.listen(serverPort, function(){
   console.log('Server listening: port:', serverPort);
 });
+//^^^^^^^^^^^^^^^^^^ Socket IO ^^^^^^^^^^^^^^^^^^^^
 
 
 var config = {
@@ -68,6 +76,7 @@ app.get('/chat', function(req, res){
   res.render('chat');
 });
 
+
 app.post("/tst", (req, res) => {
   var data= req.body;
   //name
@@ -102,7 +111,6 @@ tsttwo: function(one, two){
     return one + two;
   }
 }
-
 
 
 app.listen(port, function() {
