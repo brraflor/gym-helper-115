@@ -69,7 +69,7 @@ app.post("/tst", (req, res) => {
   var city = data.city;
   var state = data.state;
   var zip = data.zip;
-  var uid = data.uid;
+  var uid = data.userID;
 
   firebase.database().ref('users/test').set({
     test: 'test'
