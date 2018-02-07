@@ -90,15 +90,8 @@ app.post("/tst", (req, res) => {
   var city = data.city;
   var state = data.state;
   var zip = data.zip;
-  var uid = data.uid;// does not work
-  console.log(uid);
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user){
-      console.log('user detected');
-    } else {
-      console.log('user not detected');
-    };
-  });
+  var uid = data.uid;
+
   firebase.database().ref('users/test').set({
     test: 'test'
   });
@@ -112,6 +105,7 @@ app.post("/tst", (req, res) => {
   console.log(city);
   console.log(state);
   console.log(zip);
+  console.log(uid);
   res.send("printed")
 
 });
