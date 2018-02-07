@@ -7,14 +7,17 @@ var path = require('path');
 var app = express();
 app.use(bodyParser.json());
 
+/*
 var admin = require("firebase-admin");
 
-var serviceAccount = require("private/gymapp-fd949-firebase-adminsdk-f6l0b-48cc6350b8.json");
+var serviceAccount = require("/private/gymapp-fd949-firebase-adminsdk-f6l0b-48cc6350b8.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://gymapp-fd949.firebaseio.com"
 });
+
+*/
 
 var config = {
   apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
@@ -66,7 +69,8 @@ app.post("/tst", (req, res) => {
   var city = data.city;
   var state = data.state;
   var zip = data.zip;
-  var uid = firebase.user().getIdToken();
+  var uid = data.uid;
+
   firebase.database().ref('users/test').set({
     test: 'test'
   });
@@ -80,6 +84,7 @@ app.post("/tst", (req, res) => {
   console.log(city);
   console.log(state);
   console.log(zip);
+  console.log(uid);
   res.send("printed")
 
 });
