@@ -25,64 +25,60 @@
 
 </script>
 
-    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
-        authDomain: "gymapp-fd949.firebaseapp.com",
-        databaseURL: "https://gymapp-fd949.firebaseio.com",
-        projectId: "gymapp-fd949",
-        storageBucket: "gymapp-fd949.appspot.com",
-        messagingSenderId: "871486720421"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <script type="text/javascript">
-      initApp = function() {
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var uid = user.uid;
-            var phoneNumber = user.phoneNumber;
-            var providerData = user.providerData;
-            user.getIdToken().then(function(accessToken) {
-              document.getElementById('sign-in-status').textContent = 'Signed in';
-              document.getElementById('name').textContent = "Welcome "+displayName;
-        document.getElementById('uid').textContent = uid;
-              document.getElementById('account-details').textContent = JSON.stringify({
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                phoneNumber: phoneNumber,
-                photoURL: photoURL,
-                uid: uid,
-                accessToken: accessToken,
-                providerData: providerData
-              }, null, '  ');
-            });
-            var database = firebase.database();
-            firebase.database().ref('users/' + uid).set({
-        username: user.displayName,
-        email: user.email,
-        profile_picture : user.photoURL
-  });
-          } else {
-            // User is signed out.
-            document.getElementById('sign-in-status').textContent = 'Signed out';
-            document.getElementById('sign-in').textContent = 'Sign in';
-            document.getElementById('account-details').textContent = 'null';
-          }
-        }, function(error) {
-          console.log(error);
-        });
-      };
-      window.addEventListener('load', function() {
-        initApp()
+  <!-- Bootstrap -->
+  <link href="{{ url_for('public', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
+      authDomain: "gymapp-fd949.firebaseapp.com",
+      databaseURL: "https://gymapp-fd949.firebaseio.com",
+      projectId: "gymapp-fd949",
+      storageBucket: "gymapp-fd949.appspot.com",
+      messagingSenderId: "871486720421"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script type="text/javascript">
+    initApp = function() {
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var userID = user.uid;
+          var phoneNumber = user.phoneNumber;
+          var providerData = user.providerData;
+          user.getIdToken().then(function(accessToken) {
+            document.getElementById('sign-in-status').textContent = 'Signed in';
+            document.getElementById('name').textContent = "Welcome " + displayName;
+            document.getElementById('uid').setAttribute('value', userID);// = userID;
+            console.log(userID);
+            /*
+            document.getElementById('account-details').textContent = JSON.stringify({
+              displayName: displayName,
+              email: email,
+              emailVerified: emailVerified,
+              phoneNumber: phoneNumber,
+              photoURL: photoURL,
+              uid: uid,
+              accessToken: accessToken,
+              providerData: providerData
+            }, null, '  ');
+            */
+          });
+        } else {
+          // User is signed out. should not happen in this case
+          document.getElementById('sign-in-status').textContent = 'Signed out';
+          document.getElementById('sign-in').textContent = 'Sign in';
+          document.getElementById('account-details').textContent = 'null';
+        }
+      }, function(error) {
+        console.log(error);
       });
     </script>
   </head>
@@ -92,9 +88,9 @@
     </nav>
     <h1>Profile Page</h1>
 
-      <!--Sign Up Page -->
+  <!--Sign Up Page -->
 
-  <form method="post" action="/tst" >
+  <form method="post" action="/tst">
     <div class="form-row">
       <div class="col">
         <input name="first" type="text" class="form-control" placeholder="First name">
@@ -120,33 +116,33 @@
 
 
 
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input name="city" type="text" class="form-control" id="inputCity">
-    </div>
-    <!-- <div class="form-group col-md-4">
+      <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input name="city" type="text" class="form-control" id="inputCity">
+        </div>
+        <!-- <div class="form-group col-md-4">
       <label for="inputState">State</label>
       <select id="inputState" class="form-control">
         <option selected>Choose...</option>
         <option>...</option>
       </select>
     </div> -->
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputCity">State</label>
-        <input name="state" type="text" class="form-control" id="inputCity">
-      </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input name="zip"type="value" class="form-control" id="inputZip">
-    </div>
-  </div>
-  <!-- <div class="form-group">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">State</label>
+            <input name="state" type="text" class="form-control" id="inputCity">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input name="zip" type="value" class="form-control" id="inputZip">
+          </div>
+        </div>
+        <!-- <div class="form-group">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck">
       <label class="form-check-label" for="gridCheck">
@@ -155,22 +151,28 @@
     </div>
   </div> -->
 
-  <input name="userID" type="hidden" class="form-control" id="uid" value = >
+        <input name="userID" type="hidden" class="form-control" id="uid" value="" />
 
+<<<<<<< HEAD
   <button type="submit" class="btn btn-primary">Sign in</button>
   <input name="uid" type="hidden" id="inputUID"></input>
 
 </form>
+=======
+        <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+>>>>>>> upload from profilepage to server should work with correct user
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ url_for('public', filename='js/bootstrap.min.js' ) }}"></script>
-    <h1 id="name"></h1>
-    <div id="sign-in-status"></div>
-    <!--
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{ url_for('public', filename='js/bootstrap.min.js' ) }}"></script>
+  <h1 id="name"></h1>
+  <div id="sign-in-status"></div>
+  <!--
     <div id="uid"></div>
     -->
-  </body>
+</body>
+
 </html>
