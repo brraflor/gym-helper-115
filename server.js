@@ -71,8 +71,14 @@ app.post("/tst", (req, res) => {
   var zip = data.zip;
   var uid = data.userID;
 
-  firebase.database().ref('users/test').set({
-    test: 'test'
+  firebase.database().ref('users/' + uid).set({
+    firstName: data.first,
+    lastName: data.last,
+    age: data.age,
+    address: data.address,
+    city: data.city,
+    state: data.state,
+    zipcode: data.zip
   });
 
 
