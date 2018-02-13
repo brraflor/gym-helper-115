@@ -2,9 +2,35 @@ var express = require('express');
 var bodyParser = require("body-parser");
 var request = require('request');
 var firebase = require("firebase");
+
+
 var port = 8080;
+var serverPort = 3000;
 var path = require('path');
 var app = express();
+
+//^^^^^^^^^^^^^^^^^ Socket IO ^^^^^^^^^^^^^^^^^^^^
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+    //console.log('message: ' + msg);
+  });
+  socket.on('disconnect', function(socket){
+    console.log('user disconnected');
+  });
+});
+
+
+server.listen(serverPort, function(){
+  console.log('Server listening: port:', serverPort);
+});
+//^^^^^^^^^^^^^^^^^^ Socket IO ^^^^^^^^^^^^^^^^^^^^
+
 
 var config = {
   apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
@@ -46,6 +72,11 @@ app.get('/profilepage', function(req,res){
   res.render('profilepage');
 });
 
+app.get('/chat', function(req, res){
+  res.render('chat');
+});
+
+
 app.post("/tst", (req, res) => {
   var data= req.body;
   //name
@@ -68,11 +99,18 @@ app.post("/tst", (req, res) => {
 
 });
 
-
 app.get('/profile', function(req,res){
   res.render('profile');
 });
 
+module.exports = {
+tst:  function(){
+  return 'hello';
+},
+tsttwo: function(one, two){
+    return one + two;
+  }
+}
 
 
 app.listen(port, function() {
