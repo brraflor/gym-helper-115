@@ -12,3 +12,8 @@
  1.localhost:8080/login
 
  2.localhost:8080/profile
+ 
+ ## Test
+ We are using both Mocha and Chai test framework. The test file is under ./test/apptest.js
+ 
+ 1) npm run test
