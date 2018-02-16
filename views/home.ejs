@@ -3,24 +3,9 @@
   <head>
     <title>Sample FirebaseUI App</title>
     <% include partials/header %>
-    <!-- *******************************************************************************************
-       * TODO(DEVELOPER): Paste the initialization snippet from:
-       * Firebase Console > Overview > Add Firebase to your web app. *
-       ***************************************************************************************** -->
   </head>
-
-  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script> 
-  <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
-    authDomain: "gymapp-fd949.firebaseapp.com",
-    databaseURL: "https://gymapp-fd949.firebaseio.com",
-    projectId: "gymapp-fd949",
-    storageBucket: "gymapp-fd949.appspot.com",
-    messagingSenderId: "871486720421"
-  };
-  firebase.initializeApp(config);
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script src="js/initFirebase.js"></script>
 </script>
 <script type="text/javascript">
   initApp = function() {
@@ -69,7 +54,7 @@
     initApp()
   });
 </script>
-  
+
   <body>
     <nav>
         <% include partials/nav %>
