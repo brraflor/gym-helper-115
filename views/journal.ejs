@@ -20,20 +20,39 @@
   };
     firebase.initializeApp(config);
   </script>
-  <script>
-
-  var userBio = null;//replace with data from frontend here
-  var userActivities = null;//replace with data from frontend
-  var otherData = null;//replace with data from frontend
-  var database = firebase.database();
-  firebase.database().ref('users/' + uid).set({
-    bio: userBio,
-    activities: userActivities,
-    other: otherData
-  });
+  <script src='/public/js/generalFirebaseAccess.js'>
   </script>
   </head>
   <body>
+
+    <form method="post" action="/journalentry">
+    <div class="form-row align-items-center">
+      <div class='col-auto my-1'>
+        <label class='mr-sm-2' for+'inlineFormeCustomSelect'>Activity</label>
+        <select class='custom-select mo-sm-2' id='inlineFormCustomSelect'>
+          <option selected>Choose...</option>
+          <option value='1'>female
+        </select>
+      </div>
+    <div class='form-row'
+      <div class="col">
+        <input name='date' type="text" class="form-control" placeholder="Date" id='date'>
+      </div>
+      <div class="col">
+        <input name='activity' type="text" class="form-control" placeholder="Activity" id='activity'>
+      </div>
+      <div class="col">
+        <input name='data' type="text" class="form-control" placeholder="Data" id='data'>
+      </div>
+    </div>
+          <input name="userID" type="hidden" class="form-control" id="uid" value="" />
+          <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('public', filename='js/bootstrap.min.js' ) }}"></script>
+
     <h1>Welcome to My Awesome App</h1>
     <pre id="object"></pre>
     <div id="sign-in-status"></div>

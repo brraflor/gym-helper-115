@@ -7,7 +7,7 @@
        * TODO(DEVELOPER): Paste the initialization snippet from:
        * Firebase Console > Overview > Add Firebase to your web app. *
        ***************************************************************************************** -->
-  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
   <script>
   // Initialize Firebase
   var config = {
@@ -35,7 +35,7 @@
             user.getIdToken().then(function(accessToken) {
               document.getElementById('sign-in-status').textContent = 'Signed in';
               document.getElementById('name').textContent = "Welcome "+displayName;
-	      document.getElementById('uid').textContent = uid;
+	             document.getElementById('uid').textContent = uid;
               document.getElementById('account-details').textContent = JSON.stringify({
                 displayName: displayName,
                 email: email,
@@ -48,7 +48,7 @@
               }, null, '  ');
             });
             var database = firebase.database();
-            firebase.database().ref('users/' + uid).set({
+            firebase.database().ref('users/' + uid + '/userInfo').set({
     		username: user.displayName,
     		email: user.email,
     		profile_picture : user.photoURL
@@ -72,6 +72,9 @@
     <h1 id="name"></h1>
     <div id="sign-in-status"></div>
     <div id="uid"></div>
+    <!--
+    <div id='account-details'></div>
+    -->
   </body>
 
 </html>
