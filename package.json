@@ -4,7 +4,7 @@
   "description": "An application to track gym progress",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha || true"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,12 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "firebase": "^4.9.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "moch": "0.0.1",
+    "mocha": "^5.0.0"
   }
 }

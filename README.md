@@ -1,17 +1,19 @@
 
-# Gym Helper [![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)]() [![Visual Studio Team services](https://img.shields.io/vso/build/larsbrinkhoff/953a34b9-5966-4923-a48a-c41874cfb5f5/1.svg)]()
+# Gym Helper [![npm](https://img.shields.io/npm/v/npm.svg?style=for-the-badge)]()
 
  Web app design for the Software Engineering Class at UCSC. The goal of the application is to get people motivate when they go to the gym. Gym helper is the anchor that keeps people from continuing with their goals. Gym helper has a social aspect that motivates friends and family by competing with each other.  
 
 ## Installation
-To run the web app, do python run.py. This will call __init__.py in gym folder.
-THe gym app is structured using the Blueprint convention.
+1.npm install
 
-## Contributing
+2.node server.js
 
-## History
-TODO: Write history
-## Credits
-TODO: Write credits
-## License
-TODO: Write license
+## Routes
+ 1.localhost:8080/login
+
+ 2.localhost:8080/profile
+ 
+ ## Test
+ We are using both Mocha and Chai test framework. The test file is under ./test/apptest.js
+ 
+ 1) npm run test
