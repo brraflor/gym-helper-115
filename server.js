@@ -32,6 +32,18 @@ server.listen(serverPort, function(){
 //^^^^^^^^^^^^^^^^^^ Socket IO ^^^^^^^^^^^^^^^^^^^^
 
 
+/*
+var admin = require("firebase-admin");
+
+var serviceAccount = require("/private/gymapp-fd949-firebase-adminsdk-f6l0b-48cc6350b8.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://gymapp-fd949.firebaseio.com"
+});
+
+*/
+
 var config = {
   apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
   authDomain: "gymapp-fd949.firebaseapp.com",
@@ -69,6 +81,10 @@ app.get('/journal', function(req,res){
 
 app.get('/loggedIn', function(req,res){
   res.render('loggedIn');
+});
+
+app.get('/profile', function(req,res){
+  res.render('profile');
 });
 
 app.get('/profile', function(req,res){

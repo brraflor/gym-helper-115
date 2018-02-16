@@ -80,7 +80,11 @@
       }, function(error) {
         console.log(error);
       });
-    </script>
+    };
+    window.addEventListener('load', function() {
+      initApp()
+    });
+  </script>
   </head>
   <body>
     <nav>
@@ -158,12 +162,17 @@
   <input name="uid" type="hidden" id="inputUID"></input>
 
 </form>
+
+
 =======
+
+        <input name="userID" type="hidden" class="form-control" id="uid" value="" />
+
         <button type="submit" class="btn btn-primary">Sign in</button>
   </form>
->>>>>>> upload from profilepage to server should work with correct user
 
 
+>>>>>>> 05cf37c7ba86b2301f2e4b55d43b746968010cb1
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
