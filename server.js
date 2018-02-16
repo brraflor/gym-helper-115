@@ -123,13 +123,6 @@ app.post("/tst", (req, res) => {
     state: data.state,
     zipcode: data.zip
   });
-
-app.post('/journalentry', (req, res) => {
-  var data= req.body;
-
-})
-
-
   console.log(name);
   console.log(last);
   console.log(age);
@@ -140,21 +133,25 @@ app.post('/journalentry', (req, res) => {
   console.log(uid);
   res.send("printed")
 
+  });
+
+app.post('/journalentry', (req, res) => {
+  var data= req.body;
+
 });
 
 app.get('/profile', function(req,res){
   res.render('profile');
 });
 
-module.exports = {
-tst:  function(){
-  return 'hello';
-},
-tsttwo: function(one, two){
-    return one + two;
-  }
-}
-
+// module.exports={
+// tst:  function(){
+//   return 'hello';
+// },
+// tsttwo: function(one, two){
+//     return one + two;
+//   }
+// }
 
 app.listen(port, function() {
   console.log('Server Started!\nPort:'+port);
