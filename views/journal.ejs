@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html>
   <head>
     <% include partials/header %>
@@ -37,8 +37,31 @@
     <nav>
         <% include partials/nav %>
     </nav>
+    <form method="post" action="/tst">
+    <div class="form-row align-items-center">
+      <div class="col-auto my-1">
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Exercise</label>
+        <select name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+          <option selected>Choose ...</option>
+          <option value="1">Pushups</option>
+          <option value="2">Pullups</option>
+          <option value="3">Situps</option>
+        </select>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <input name="sets" type="text" class="form-control" placeholder="Sets">
+      </div>
+      <div class="col">
+        <input name="reps" type="text" class="form-control" placeholder="Repetitions">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
-    <h1>Welcome to My Awesome App</h1>
+
+    
+    
     <pre id="object"></pre>
     <div id="sign-in-status"></div>
     <div id="sign-in"></div>

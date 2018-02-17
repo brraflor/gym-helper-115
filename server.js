@@ -87,10 +87,13 @@ app.post("/tst", (req, res) => {
   var city = data.city;
   var state = data.state;
   var zip = data.zip;
+  var sets = data.sets
+  var reps = data.reps
+  var exercise = data.exercise
 
-  console.log(name);
-  console.log(last);
-  console.log(age);
+  console.log(sets);
+  console.log(reps);
+  console.log(exercise);
   console.log(address);
   console.log(city);
   console.log(state);
