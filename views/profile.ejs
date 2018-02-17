@@ -4,70 +4,16 @@
     <title>Profile</title>
     <% include partials/header %>
   </head>
-  <!-- Bootstrap -->
-  <!-- <link href="{{ url_for('public', filename='css/bootstrap.min.css') }}" rel="stylesheet"> -->
+
   <script src="css/profile.css" rel="stylesheet" type="text/css"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script> 
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
-      authDomain: "gymapp-fd949.firebaseapp.com",
-      databaseURL: "https://gymapp-fd949.firebaseio.com",
-      projectId: "gymapp-fd949",
-      storageBucket: "gymapp-fd949.appspot.com",
-      messagingSenderId: "871486720421"
-    };
-    firebase.initializeApp(config);
-  </script>
-  
-  <script type="text/javascript">
-    initApp = function() {
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          var displayName = user.displayName;
-          var email = user.email;
-          var emailVerified = user.emailVerified;
-          var photoURL = user.photoURL;
-          var uid = user.uid;
-          var phoneNumber = user.phoneNumber;
-          var providerData = user.providerData;
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 
-          user.getIdToken().then(function(accessToken) {
-            document.getElementById('name').textContent = displayName;
-            document.getElementById('uid').textContent = uid;
-            document.getElementById('phone').textContent = phoneNumber;
-            document.getElementById('email').textContent = email;
-          });
-          var database = firebase.database();
-          firebase.database().ref('users/' + uid).set({
-            username: user.displayName,
-            email: user.email,
-            profile_picture : user.photoURL
-          });
-        } else {
-          // User is signed out.
-        }
-      }, function(error) {
-        console.log(error);
-      });
-    };
-    window.addEventListener('load', function() {
-      initApp()
-    });
-  </script>
-  
+  <script src="js/initFirebase.js" ></script>
+  <script src="js/profileinfo"></script>
+  <% include partials/nav %>
 
-  <body>
-    <nav>
-        <% include partials/nav %>
-    </nav>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
     <div class="page">
       <p>&nbsp;</p>
       <div id="table">
@@ -116,7 +62,7 @@
         </tr>
       </table>
       </div>
-      
+
       <p>&nbsp;</p>
       <blockquote>
           &#8220;Innovations towards a Healthy Lifestyle.&#8221;
@@ -127,6 +73,4 @@
           </footer>
       </blockquote>
     </div>
-    
-  </body>
-</html>
+<%include partials/footer%>

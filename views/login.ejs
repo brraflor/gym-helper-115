@@ -1,40 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Login</title>
     <% include partials/header %>
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-    <title>Login</title>
   </head>
-<!--Code Snippet -->
-<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
-    authDomain: "gymapp-fd949.firebaseapp.com",
-    databaseURL: "https://gymapp-fd949.firebaseio.com",
-    projectId: "gymapp-fd949",
-    storageBucket: "gymapp-fd949.appspot.com",
-    messagingSenderId: "871486720421"
-  };
-  firebase.initializeApp(config);
-</script>
-
-<!--Code Snippet -->
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <!-- *******************************************************************************************
-       * TODO(DEVELOPER): Paste the initialization snippet from:
-       * Firebase Console > Overview > Add Firebase to your web app. *
-       ***************************************************************************************** -->
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-    <script type="text/javascript">
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script src="js/initFirebase.js"></script>
+  <script src="js/firebaseinfo.js" ></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+  <script type="text/javascript">
       // FirebaseUI config.
       var uiConfig = {
         signInSuccessUrl: 'loggedIn',
@@ -44,9 +19,6 @@
           firebase.auth.EmailAuthProvider.PROVIDER_ID,
           firebase.auth.TwitterAuthProvider.PROVIDER_ID,
           firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-
-
-
         ],
         // Terms of service url.
         tosUrl: '<your-tos-url>'
@@ -66,14 +38,6 @@
          Your app may use that space for branding, controls and other customizations.-->
     <h1>Login Here</h1>
     <div id="firebaseui-auth-container"></div>
-  </body>
-</html>
-<!--Code Snippet -->
 
+<%include partials/footer%>
 
-  <body>
-
-
-
-  </body>
-</html>
