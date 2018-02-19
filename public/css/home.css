@@ -14,7 +14,7 @@ p{
   background-color: #245554;
 } */
 #home{
-  background-color: #dd4814;
+  background-color: #ff5a00;
   font-family: 'Bitter', serif;
   width: 50%;
   margin: 100px auto;
@@ -23,13 +23,13 @@ p{
   opacity: 0.8;
 }
 #home-button{
-  background: #245554;
+  background: #fd7920;
   color: black;
 }
 #tst{
     color: black;
     text-align: center;
-    background-color: #dd4814;
+    background-color: #ff5a00;
     width: 50%;
     margin: 100px auto;
     border-radius: 25px;
