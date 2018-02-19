@@ -1,32 +1,44 @@
-.ourNav{
+.navbar-light .navbar-brand {
+    color: #d5520c;
+}
+.bg-light {
+    background-color: #31263e!important;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+li a:hover {
+  background-color: #fd7920;
+}
+
+#righty{
+  float: right;
+}
+
+/* .ourNav{
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: auto;
   /* background-color: #c72800; */
   /* background: radial-gradient(#221e22,#fd7920); */
-  background-color: #31263e;
-}
-li{
+  /* background-color: #31263e; */
+/* } */
+/* li{
   float: left;
 
-}
-li a{
+} */
+/* li a{
   display: block;
   color: white;
   text-align: center;
   padding: 15px 18px;
   text-decoration: none;
 
-}
+} */
 
-li a:hover {
-  background-color: #fd7920;
-}
 
-.righty{
-  float: right;
-}
+
 /* .active{
   background-color: orangered ;
 } */

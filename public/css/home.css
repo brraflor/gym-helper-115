@@ -28,7 +28,7 @@ p{
   color: white;
   border-radius: 25px;
 }
-#tst{
+.tst{
     color: black;
     text-align: center;
     background-color: #ff5a00;
@@ -41,4 +41,7 @@ body{
   background: url("../images/header.jpeg")
     no-repeat center center fixed;
     background-size: cover;
+}
+.col-xs-12 img{
+  width: 100%;
 }
