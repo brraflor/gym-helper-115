@@ -11,6 +11,7 @@
     <script src="js/initFirebase.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Style  -->
+    <link rel="stylesheet" href="/css/chat.css">
     <link rel="stylesheet" href="/css/nav.css">
     <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -20,7 +21,7 @@
     <br>
     <div class="container">
         <div class="panel panel-primary">
-            <div class="panel-heading">Group 1</div>
+            <div id="chatPanel" class="panel-heading">Group 1</div>
             <div class="panel-body">
                 <p ng-repeat="m in messages">{{m.name}}:  {{m.message}} - {{m.date | date:'medium'}}</p>
 

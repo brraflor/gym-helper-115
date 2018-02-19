@@ -23,8 +23,10 @@ p{
   opacity: 0.8;
 }
 #home-button{
-  background: #fd7920;
-  color: black;
+  overflow: none;
+  background: #31263e;
+  color: white;
+  border-radius: 25px;
 }
 #tst{
     color: black;

@@ -1,10 +1,11 @@
-ul{
+.ourNav{
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: auto;
-  background-color: #c72800;
-
+  /* background-color: #c72800; */
+  /* background: radial-gradient(#221e22,#fd7920); */
+  background-color: #31263e;
 }
 li{
   float: left;
