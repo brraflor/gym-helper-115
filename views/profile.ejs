@@ -5,72 +5,58 @@
     <% include partials/header %>
   </head>
 
-  <script src="css/profile.css" rel="stylesheet" type="text/css"></script>
   <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-
   <script src="js/initFirebase.js" ></script>
   <script src="js/profileinfo"></script>
   <% include partials/nav %>
 
-
-
-    <div class="page">
-      <p>&nbsp;</p>
-      <div id="table">
-      <table>
-        <tr>
-          <td rowspan="2">
-              <img src=profile_picture class="profile" alt ="profile_picture" title ="profile_picture" width=100px />
+  <div class="page">
+    <p>&nbsp;</p>
+    <div id="table" class="mainBody">
+    <table>
+      <tr>
+        <td rowspan="2">
+            <img src=profile_picture class="profile" alt ="profile_picture" title ="profile_picture" width=100px />
+        </td>
+        <td>
+            <p>Name</p>
+        </td>
+        <td>
+          <div id="name"></div>
+        </td>
+      </tr>
+      <tr>
+          <td>
+            <p>Achievement&nbsp;&nbsp;&nbsp;</p>
           </td>
           <td>
-              <p>Name</p>
+            <div id="achievement">Achievement</p>
           </td>
-          <td>
-            <div id="name"></div>
-          </td>
-        </tr>
-        <tr>
-            <td>
-              <p>Achievement&nbsp;&nbsp;&nbsp;</p>
-            </td>
-            <td>
-              <div id="achievement">Achievement</p>
-            </td>
-        </tr>
-      </table>
-      <table>
-        <tr>
-            <td colspan="2">
-                <p>User ID:</p>
-            </td>
-            <td>
-                <div id="uid"></p>
-            </td>
-        </tr>
-        <tr>
+      </tr>
+    </table>
+    <table>
+      <tr>
           <td colspan="2">
-              <p>Phone:</p>
+              <p>User ID:</p>
           </td>
           <td>
-              <div id="phone"></p>
+              <div id="uid"></p>
           </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <p class="bio">Bio</p>
-            </td>
-        </tr>
-      </table>
-      </div>
-
-      <p>&nbsp;</p>
-      <blockquote>
-          &#8220;Innovations towards a Healthy Lifestyle.&#8221;
-          <footer>
-            <small>
-              <em>&mdash;Gym helper team.</em>
-            </small>
-          </footer>
-      </blockquote>
+      </tr>
+      <tr>
+        <td colspan="2">
+            <p>Phone:</p>
+        </td>
+        <td>
+            <div id="phone"></p>
+        </td>
+      </tr>
+      <tr>
+          <td colspan="2">
+              <p class="bio">Bio</p>
+          </td>
+      </tr>
+    </table>
     </div>
-<%include partials/footer%>
+    <%include partials/footer%>
+  </div>
