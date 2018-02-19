@@ -1,0 +1,42 @@
+strong{
+  color:White;
+  font-size: 4em;
+}
+p{
+  color:White;
+}
+/* header{
+  font-family: 'Bitter', serif;
+
+  margin: auto;
+  border-radius: 25px;
+  background-color: blue;
+  background-color: #245554;
+} */
+#home{
+  background-color: #dd4814;
+  font-family: 'Bitter', serif;
+  width: 50%;
+  margin: 100px auto;
+  text-align: center;
+  border-radius: 25px;
+  opacity: 0.8;
+}
+#home-button{
+  background: #245554;
+  color: black;
+}
+#tst{
+    color: black;
+    text-align: center;
+    background-color: #dd4814;
+    width: 50%;
+    margin: 100px auto;
+    border-radius: 25px;
+}
+body{
+  /* background-color: #245554; */
+  background: url("../images/header.jpeg")
+    no-repeat center center fixed;
+    background-size: cover;
+}
