@@ -35,23 +35,24 @@
       other: otherData
     });
   </script>
-<<<<<<< HEAD
-
-  <% include partials/nav %>
 
   <body>
     <div class="page">
-      <form method="post" action="/tst">
-        <div class="mainBody" class="form-row align-items-center">
+      <% include partials/nav %>
+      <p>&nbsp;</p>
+      <form class="mainBody" method="post" action="/tst">
+        <div class="form-row align-items-center">
           <div class="col-auto my-1">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Exercise</label>
-            <select name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <img src="/images/exercise.jpg" title ="exercise_picture" width=70px />
+            <label class="large-text" class="mr-sm-2" for="inlineFormCustomSelect">&nbsp;Exercise&nbsp;&nbsp;</label>
+            <select class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
               <option selected>Choose ...</option>
               <option value="1">Pushups</option>
               <option value="2">Pullups</option>
               <option value="3">Situps</option>
             </select>
           </div>
+
           <div class="form-row">
             <div class="col">
               <input name="sets" type="text" class="form-control" placeholder="Sets">
@@ -60,10 +61,15 @@
               <input name="reps" type="text" class="form-control" placeholder="Repetitions">
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <p class="tiny">&nbsp;</p>
+          <button id="submit-fitness-data" type="submit" class="btn btn-primary">Submit</button>
+          <p class="mid-text">&nbsp;Good Job Today!</p>
+          <p class="tiny">&nbsp;</p>
         </div>
       </form>
-      <pre id="object"></pre>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
       <div id="sign-in-status"></div>
       <div id="sign-in"></div>
       <div id="account-details"></div>
