@@ -1,5 +1,6 @@
 h1, h2 {
   font-weight: normal;
+  margin: 50px auto;
 }
 ul {
   list-style-type: none;
@@ -9,23 +10,41 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: #42b983;
-}
 .profile {
   padding:3.5px;
   border:4px solid rgb(240, 240, 240);
   background-color:white;
   border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .mainBody
 { 
+  color: #31263e;
+  font-family: 'Bitter', serif;
   width: 500px;
   margin-left: auto;
   margin-right: auto;
   border: 2.5px solid rgb(243, 243, 243);
   background-color:white;
-  border-radius: 2px;
+  border-radius: 20px;
+  margin: 20px auto;
+}
+.box
+{ 
+  color: white;
+  font-family: 'Bitter', serif;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2.5px solid rgb(243, 243, 243);
+  background-color:#ff5a00;
+  border-radius: 25px;
+  margin: 20px auto;
+}
+.head{
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .page
 {
@@ -46,4 +65,19 @@ a {
 blockquote {
   margin-left: auto;
   margin-right: auto;
+}
+button{
+  background: #31263e;
+  color: white;
+  border-radius: 25px;
+}
+.subtitle {
+  color: #31263e;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.icon {
+  width: 20px;
+  margin-left: 4px;
+  margin-right: 2px;
 }

@@ -18,14 +18,14 @@
 
   <div class="page">
     <p>&nbsp;</p>
-    <div id="table" class="mainBody">
-    <table>
+    <div class="box">
+    <table class="head">
       <tr>
         <td rowspan="2">
             <img src=profile_picture class="profile" alt ="profile_picture" title ="profile_picture" width=100px />
         </td>
         <td>
-            <p>Name</p>
+            <h1>Name</h1>
         </td>
         <td>
           <div id="name"></div>
@@ -40,30 +40,47 @@
           </td>
       </tr>
     </table>
+    </div>
+
+    <div class="mainBody">
     <table>
       <tr>
-          <td colspan="2">
-              <p>User ID:</p>
-          </td>
-          <td>
-              <div id="uid"></p>
-          </td>
+        <td>
+          <img src="/images/id.png" title ="id-icon" width=20px class="icon" />
+        </td>
+        <td colspan="2">
+            <p class="subtitle">User ID:</p>
+        </td>
+        <td>
+            <div id="uid"></p>
+        </td>
       </tr>
       <tr>
+        <td>
+          <img src="/images/phone.png" title ="phone-icon" width=20px class="icon" />
+        </td>
         <td colspan="2">
-            <p>Phone:</p>
+            <p class="subtitle">Phone:</p>
         </td>
         <td>
             <div id="phone"></p>
         </td>
       </tr>
       <tr>
-          <td colspan="2">
-              <p class="bio">Bio</p>
-          </td>
+        <td>
+            <img src="/images/bio.png" title ="bio-icon" width=20px class="icon" />
+        </td>
+        <td colspan="2">
+            <p class="subtitle">Bio:</p>
+        </td>
+        <td>
+            <div id="biography"></p>
+        </td>
       </tr>
     </table>
-    </div>
   </div>
 
-  <%include partials/footer%>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <%include partials/footer%>
+  </div>
