@@ -65,7 +65,7 @@ app.get('/journal', function(req,res){
 });
 
 app.get('/loggedIn', function(req,res){
-  res.render('loggedIn');
+  res.redirect('profile');
 });
 
 app.get('/profilepage', function(req,res){
@@ -87,10 +87,21 @@ app.post("/tst", (req, res) => {
   var city = data.city;
   var state = data.state;
   var zip = data.zip;
-  var sets = data.sets
-  var reps = data.reps
-  var exercise = data.exercise
+  var sets = data.sets;
+  var reps = data.reps;
+  var exercise = data.exercise;
+  var uid = data.uid;
 
+  firebase.database().ref('users/' + uid + '/profile').set({
+    firstName: data.first,
+    lastName: data.last,
+    age: data.age,
+    //gender: data.inlineFormCustomSelect,
+    address: data.address,
+    city: data.city,
+    state: data.state,
+    zipcode: data.zip
+  });
   console.log(sets);
   console.log(reps);
   console.log(exercise);
@@ -98,7 +109,20 @@ app.post("/tst", (req, res) => {
   console.log(city);
   console.log(state);
   console.log(zip);
-  res.send("printed")
+  res.render("profile");
+
+});
+
+app.post("/updatejournal", (req, res) => {
+  var data = req.body;
+  var uid = data.uid;
+  var date = data.date;
+  var sets = data.sets;
+  var reps = data.reps;
+  var exercise = data.exercise;
+
+
+  res.render("journal");
 
 });
 
