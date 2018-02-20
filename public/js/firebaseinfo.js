@@ -12,7 +12,10 @@ initApp = function() {
       user.getIdToken().then(function(accessToken) {
         document.getElementById('sign-in-status').textContent = 'Signed in';
         document.getElementById('name').textContent = "Welcome "+displayName;
-  document.getElementById('uid').textContent = uid;
+        document.getElementById('uid').textContent = uid;
+        document.getElementById('username').textContent = displayName;
+        document.getElementById('email').textContent = email;
+        document.getElementById(profile_picture) : uphotoURL;
         document.getElementById('account-details').textContent = JSON.stringify({
           displayName: displayName,
           email: email,
@@ -24,12 +27,7 @@ initApp = function() {
           providerData: providerData
         }, null, '  ');
       });
-      var database = firebase.database();
-      firebase.database().ref('users/' + uid).set({
-  username: user.displayName,
-  email: user.email,
-  profile_picture : user.photoURL
-});
+      
     } else {
       // User is signed out.
       document.getElementById('sign-in-status').textContent = 'Signed out';
