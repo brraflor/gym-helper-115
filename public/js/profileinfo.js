@@ -16,12 +16,7 @@ initApp = function() {
         document.getElementById('phone').textContent = phoneNumber;
         document.getElementById('email').textContent = email;
       });
-      var database = firebase.database();
-      firebase.database().ref('users/' + uid).set({
-        username: user.displayName,
-        email: user.email,
-        profile_picture : user.photoURL
-      });
+      
     } else {
       // User is signed out.
     }
