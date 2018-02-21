@@ -49,9 +49,9 @@ window.addEventListener('load', function() {
             <div class="col-auto my-1">
               <img src="/images/exercise.jpg" id="exercise" title ="exercise_picture" width=70px />
               <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Exercise &nbsp;</label>
-              <select class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+              <select id="select-exercise"class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                   <optgroup>
-                    <option selected>Choose ...</option>
+                    <option selected>Choose an Exercise</option>
                     <option value="1">Pushups</option>
                     <option value="2">Pullups</option>
                     <option value="3">Situps</option>
@@ -72,7 +72,7 @@ window.addEventListener('load', function() {
           </div>
           <div class="sub-body">
             <input name="userid" type="hidden" class="form-control" id="uid" >
-            <button id="submit-fitness-data" type="submit" class="btn btn-primary">Submit</button>
+            <button class="submit-button" type="submit" class="btn btn-primary">Submit</button>
           </div> 
         </div>
       </form>

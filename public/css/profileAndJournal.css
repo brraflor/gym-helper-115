@@ -36,9 +36,9 @@ li {
   margin: 20px auto;
 }
 .sub-body{
-  overflow: auto;
-  width: 100%;
+  width: 95%;
   margin: 20px;
+  margin-right: 0px;
 }
 .box
 { 
@@ -76,11 +76,15 @@ blockquote {
   margin-left: auto;
   margin-right: auto;
 }
-#submit-fitness-data{
+.submit-button{
   background-color: #31263e;
   color: white;
   border-radius: 25px;
   float: right;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  margin-top: 20px;
 }
 .subtitle {
   color: #31263e;
@@ -95,9 +99,9 @@ blockquote {
 .form-row {
   margin: 20px;
 }
-select {
+#select-exercise {
   color: #c72800;
-  width: 150px;
+  width: 200px;
   height: 30px;
   margin-bottom:20px;
   margin-left:20px;
