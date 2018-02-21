@@ -119,9 +119,30 @@ app.post("/updatejournal", (req, res) => {
   var date = data.date;
   var sets = data.sets;
   var reps = data.reps;
+  var exercise = data.exercise
   var exercise = data.exercise;
   console.log(data)
- 
+  
+  //get current date
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd = '0'+dd
+  } 
+
+  if(mm<10) {
+      mm = '0'+mm
+  } 
+
+  today = mm + '_' + dd + '_' + yyyy;
+  //push into database
+  firebase.database().ref('users/' + uid + '/journal/' + exercise +'/'+ today).set({
+  reps: reps,
+  sets: sets
+  });  
   res.render("journal");
 
 });
