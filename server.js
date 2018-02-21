@@ -68,12 +68,16 @@ app.get('/loggedIn', function(req,res){
   res.redirect('profile');
 });
 
-app.get('/profilepage', function(req,res){
-  res.render('profilepage');
+app.get('/updateprofile', function(req,res){
+  res.render('updateprofile');
 });
 
 app.get('/chat', function(req, res){
   res.render('chat');
+});
+
+app.get('/fitnessdata', function(req, res){
+  res.render('fitnessdata');
 });
 
 

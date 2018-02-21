@@ -45,16 +45,17 @@ window.addEventListener('load', function() {
       <p>&nbsp;</p>
       <form class="mainBody" method="post" action="/updatejournal">
         <div class="form-row align-items-center">
-<<<<<<< HEAD
           <div class="sub-body">
             <div class="col-auto my-1">
-              <img src="/images/exercise.jpg" title ="exercise_picture" width=70px />
-              <label class="large-text" class="mr-sm-2" for="inlineFormCustomSelect">&nbsp;Exercise&nbsp;&nbsp;</label>
+              <img src="/images/exercise.jpg" id="exercise" title ="exercise_picture" width=70px />
+              <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Exercise &nbsp;</label>
               <select class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <option selected>Choose ...</option>
-                <option value="1">Pushups</option>
-                <option value="2">Pullups</option>
-                <option value="3">Situps</option>
+                  <optgroup>
+                    <option selected>Choose ...</option>
+                    <option value="1">Pushups</option>
+                    <option value="2">Pullups</option>
+                    <option value="3">Situps</option>
+                  </optgroup>
               </select>
             </div>
           </div>

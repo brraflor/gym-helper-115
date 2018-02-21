@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<script>
+initApp = function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      var uid = user.uid;
+      var phoneNumber = user.phoneNumber;
+      var providerData = user.providerData;
+      console.log(uid)
+      user.getIdToken().then(function(accessToken) {
+        document.getElementById('uid').value = uid;
+      });
+
+    } else {
+      // User is signed out.
+    }
+  }, function(error) {
+    console.log(error);
+  });
+};
+window.addEventListener('load', function() {
+  initApp()
+});
+</script>
+<html>
+  <head>
+    <% include partials/header %>
+    <title>User Journal</title>
+  </head>
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script src="js/initFirebase.js" ></script>
+  <!-- Style  -->
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/data.css">
+  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <!-- End-Style  -->
+  <body>
+    <div class="page">
+      <% include partials/nav %>
+      <div class="box">
+      <table class="head">
+        <tr>
+          <td rowspan="2">
+              <img src=profile_picture class="profile" alt ="profile_picture" title ="profile_picture" width=100px />
+          </td>
+          <td>
+            <h2 id="name">Name</h2>
+          </td>
+        </tr>
+        <tr>
+            <td>
+              <p>Achievement&nbsp;&nbsp;&nbsp;</p>
+            </td>
+            <td>
+              <div id="achievement">Achievement</p>
+            </td>
+        </tr>
+      </table>
+      </div>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    </div>
+  </body>
+</html>
