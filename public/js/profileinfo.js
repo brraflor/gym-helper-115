@@ -9,10 +9,11 @@ initApp = function() {
       var uid = user.uid;
       var phoneNumber = user.phoneNumber;
       var providerData = user.providerData;
-
+      console.log(uid)
       user.getIdToken().then(function(accessToken) {
         document.getElementById('name').textContent = displayName;
         document.getElementById('uid').textContent = uid;
+	document.getElementById('userid').value = uid;
         document.getElementById('phone').textContent = phoneNumber;
         document.getElementById('email').textContent = email;
       });

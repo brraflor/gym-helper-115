@@ -1,40 +1,39 @@
-<DOCTYPE html>
+<!DOCTYPE html>
+<script>
+initApp = function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      var uid = user.uid;
+      var phoneNumber = user.phoneNumber;
+      var providerData = user.providerData;
+      console.log(uid)
+      user.getIdToken().then(function(accessToken) {
+        document.getElementById('uid').value = uid;
+      });
+
+    } else {
+      // User is signed out.
+    }
+  }, function(error) {
+    console.log(error);
+  });
+};
+window.addEventListener('load', function() {
+  initApp()
+});
+</script>
 <html>
   <head>
     <% include partials/header %>
-    <title>Sample FirebaseUI App</title>
+    <title>User Journal</title>
   </head>
-  <!-- *******************************************************************************************
-      * TODO(DEVELOPER): Paste the initialization snippet from:
-      * Firebase Console > Overview > Add Firebase to your web app. *
-      ***************************************************************************************** -->
   <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-  <script src="js/initFirebase.js"></script>
-  <script src="js/firebaseinfo.js" ></script>
-  <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBA5J-Hn2Cl7GBxOZYBqb11B24ckd2yF1M",
-    authDomain: "gymapp-fd949.firebaseapp.com",
-    databaseURL: "https://gymapp-fd949.firebaseio.com",
-    projectId: "gymapp-fd949",
-    storageBucket: "gymapp-fd949.appspot.com",
-    messagingSenderId: "871486720421"
-  };
-    firebase.initializeApp(config);
-  </script>
-
-  <script>
-    var userBio = null;//replace with data from frontend here
-    var userActivities = null;//replace with data from frontend
-    var otherData = null;//replace with data from frontend
-    var database = firebase.database();
-    firebase.database().ref('users/' + uid).set({
-      bio: userBio,
-      activities: userActivities,
-      other: otherData
-    });
-  </script>
+  <script src="js/initFirebase.js" ></script>
   <!-- Style  -->
   <link rel="stylesheet" href="/css/nav.css">
   <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
@@ -44,8 +43,9 @@
     <div class="page">
       <% include partials/nav %>
       <p>&nbsp;</p>
-      <form class="mainBody" method="post" action="/tst">
+      <form class="mainBody" method="post" action="/updatejournal">
         <div class="form-row align-items-center">
+<<<<<<< HEAD
           <div class="sub-body">
             <div class="col-auto my-1">
               <img src="/images/exercise.jpg" title ="exercise_picture" width=70px />
@@ -70,15 +70,14 @@
             </div>
           </div>
           <div class="sub-body">
+            <input name="userid" type="hidden" class="form-control" id="uid" >
             <button id="submit-fitness-data" type="submit" class="btn btn-primary">Submit</button>
-          </div>
+          </div> 
         </div>
       </form>
 
       <p>&nbsp;</p>
       <p>&nbsp;</p>
-
-      <%include partials/footer%>
     </div>
   </body>
 </html>

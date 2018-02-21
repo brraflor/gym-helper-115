@@ -15,7 +15,7 @@ initApp = function() {
         document.getElementById('uid').textContent = uid;
         document.getElementById('username').textContent = displayName;
         document.getElementById('email').textContent = email;
-        document.getElementById(profile_picture) : uphotoURL;
+        document.getElementById(profile_picture) = uphotoURL;
         document.getElementById('account-details').textContent = JSON.stringify({
           displayName: displayName,
           email: email,
@@ -27,7 +27,7 @@ initApp = function() {
           providerData: providerData
         }, null, '  ');
       });
-      
+
     } else {
       // User is signed out.
       document.getElementById('sign-in-status').textContent = 'Signed out';
