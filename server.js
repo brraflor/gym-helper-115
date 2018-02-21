@@ -115,13 +115,13 @@ app.post("/tst", (req, res) => {
 
 app.post("/updatejournal", (req, res) => {
   var data = req.body;
-  var uid = data.uid;
+  var uid = data.userid;
   var date = data.date;
   var sets = data.sets;
   var reps = data.reps;
   var exercise = data.exercise;
-
-
+  console.log(data)
+ 
   res.render("journal");
 
 });

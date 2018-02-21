@@ -10,12 +10,12 @@ initApp = function() {
       var phoneNumber = user.phoneNumber;
       var providerData = user.providerData;
       user.getIdToken().then(function(accessToken) {
-        document.getElementById('sign-in-status').textContent = 'Signed in';
-        document.getElementById('name').textContent = "Welcome "+displayName;
+        //document.getElementById('sign-in-status').textContent = 'Signed in';
+        //document.getElementById('name').textContent = "Welcome "+displayName;
         document.getElementById('uid').textContent = uid;
-        document.getElementById('username').textContent = displayName;
-        document.getElementById('email').textContent = email;
-        document.getElementById(profile_picture) : uphotoURL;
+        //document.getElementById('username').textContent = displayName;
+        //document.getElementById('email').textContent = email;
+        //document.getElementById(profile_picture) = uphotoURL;
         document.getElementById('account-details').textContent = JSON.stringify({
           displayName: displayName,
           email: email,
