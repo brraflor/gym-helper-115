@@ -122,7 +122,7 @@ app.post("/updatejournal", (req, res) => {
   var exercise = data.exercise
   var exercise = data.exercise;
   console.log(data)
-  
+
   //get current date
   var today = new Date();
   var dd = today.getDate();
@@ -131,18 +131,42 @@ app.post("/updatejournal", (req, res) => {
 
   if(dd<10) {
       dd = '0'+dd
-  } 
+  }
 
   if(mm<10) {
       mm = '0'+mm
-  } 
+  }
 
   today = mm + '_' + dd + '_' + yyyy;
+  //get total for exercise
+
   //push into database
   firebase.database().ref('users/' + uid + '/journal/' + exercise +'/'+ today).set({
   reps: reps,
   sets: sets
-  });  
+  });
+
+  var ref = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total');
+
+  ref.once("value").then(function(snapshot) {
+    console.log('before if statement');
+    //console.log(snapshot.child('total'));
+    if(snapshot.child('total').exists()){
+
+      var pasttotal = snapshot.child('total').val();
+      var total = parseInt(pasttotal) + (parseInt(reps) * parseInt(sets));
+      firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total').set({
+        total: total
+      });
+    } else {
+      console.log('in else');
+      var total = (parseInt(reps) * parseInt(sets));
+      firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total').set({
+        total: total
+      });
+    }
+  });
+
   res.render("journal");
 
 });
