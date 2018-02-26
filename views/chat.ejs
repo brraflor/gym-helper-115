@@ -21,8 +21,17 @@
 <body ng-controller="ChatController">
     <br>
     <div class="container">
+  <ul class="nav nav-pills" role="tablist">
+  <li role="presentation" class="active">
+  <li> <a href="#" ng-click="clicked(1)">Group1</a></li>
+  <li> <a href="#" ng-click="clicked(2)">Group2</a></li>
+  <li> <a href="#" ng-click="clicked(3)">Group3</a></li>
+  <li> <a href="#" ng-click="clicked(4)">Group4</a></li>
+  <li> <a href="#" ng-click="clicked(5)">Group5</a></li>
+
+    </ul>
         <div class="panel panel-primary">
-            <div id="chatPanel" class="panel-heading">Group 1</div>
+            <div id="chatPanel" class="panel-heading">Group Chat</div>
             <div class="panel-body">
                 <p ng-repeat="m in messages">{{m.name}}:  {{m.message}} - {{m.date | date:'medium'}}</p>
 

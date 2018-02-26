@@ -1,7 +1,11 @@
 var app = angular.module('chatApp', ['firebase']);
+var groupNum = 1
+var ref = null
+
 
 app.controller('ChatController', function($scope, $firebaseArray) {
-    var ref = firebase.database().ref().child('chat/group/messages');
+    
+     ref = firebase.database().ref().child('chat/'+ "group"+ groupNum +'/messages');
     var auth = firebase.auth();
     auth.onAuthStateChanged(function(user) {
   	var user = firebase.auth().currentUser;
@@ -16,15 +20,24 @@ app.controller('ChatController', function($scope, $firebaseArray) {
 	});
 
     $scope.messages = $firebaseArray(ref);
+        // console.log("groupNum: "+ groupNum + " ref: "+ ref) for debug use
+
 
     $scope.send = function() {
     	var currentuser = firebase.auth().currentUser;
         $scope.messages.$add({
         	name: currentuser.displayName,
             message: $scope.messageText,
-            date: Date.now()
-
+            date: Date.now(),
         })
     }
 
+
+    $scope.clicked = function(id){
+        groupNum = id,
+        ref = firebase.database().ref().child('chat/'+ "group"+ groupNum +'/messages');
+        // console.log("in click groupNum: "+ groupNum + " ref: "+ ref) for debug use
+        $scope.messages = $firebaseArray(ref);
+    }
 })
+    
