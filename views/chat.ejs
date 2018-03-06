@@ -34,12 +34,12 @@
         <div class="panel panel-primary">
             <div id="chatPanel" class="panel-heading">Group Chat</div>
             <div class="panel-body">
-                <p ng-repeat="m in messages">{{m.name}}:  {{m.message}} - {{m.date | date:'medium'}}</p>
+                <p ng-repeat="m in messages">{{m.name}} - {{m.date | date:'medium'}} : {{m.message}} </p>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Message here..." ng-model="messageText">
                 </div>
-                <button type="submit" class="btn btn-default" ng-click="send()">Send</button>
-                <!-- 
+                <button type="submit" class="btn" ng-click="send()">Send</button>
+                <!--
                 <button type="submit" class="btn btn-default" ng-click="sendFriend()">Send to Friend</button> -->
             </div>
         </div>

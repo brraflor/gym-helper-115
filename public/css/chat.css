@@ -1,3 +1,10 @@
 #chatPanel{
     background-color:#ee5622;
 }
+
+.btn{
+  overflow: none;
+  background: #31263e;
+  color: white;
+  border-radius: 25px;
+}
