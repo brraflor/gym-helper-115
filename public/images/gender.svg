@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   width="484" height="564" viewBox="-2 -2 484 564">
+<metadata><rdf:RDF><cc:Work rdf:about="">
+  <dc:format>image/svg+xml</dc:format>
+  <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+  <dc:title>A_TransGender-Symbol_black-and-white</dc:title>
+</cc:Work></rdf:RDF></metadata>
+<path
+   d="M 0,0 v 106.656 h 42.656 v -32 l 32,32 -32,32 32.031,31.969 31.969,-31.969 10.688,10.531 C 96.148,175.922 83.518,209.5 83.5,246.062 83.462,324.185 140.886,389.254 216.062,400.781 L 216,456 h -61.344 v 48 H 216 v 56 h 48 v -56 h 61.344 V 456 H 264 v -55.281 -0.031 c 74.884,-11.598 132.531,-76.584 132.531,-154.625 0,-36.47 -12.589,-70.113 -33.688,-96.812 l 74.5,-74.594 V 144 H 480 V 0 H 336 v 42.656 h 69.344 l -75.406,75.438 C 304.471,100.127 273.437,89.531 240,89.531 c -33.427,0 -64.459,10.59 -89.875,28.562 l -11.469,-11.438 32,-32 -32,-32 -32,32 -32,-32 h 32 V 0 z M 240,133.438 a 112,112 0 0,1 0,224 a 112,112 0 0,1 0,-224 z"/>
+<rect
+   width="151.86441"
+   height="32.416039"
+   x="163.72882"
+   y="202.88135"/>
+<rect
+   width="151.86441"
+   height="32.416039"
+   x="163.72881"
+   y="259.81052"/>
+</svg>

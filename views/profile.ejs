@@ -26,7 +26,7 @@
             <img src=profile_picture class="profile" alt ="profile_picture" title ="profile_picture" width=100px />
         </td>
         <td>
-          <h2 id="name"></h2>
+          <h2 id="name">name</h2>
         </td>
       </tr>
       <tr>
@@ -40,45 +40,68 @@
     </table>
     </div>
 
-    <div class="mainBody">
-    <table>
-      <tr>
-        <td>
-          <img src="/images/id.png" title ="id-icon" class="icon" />
-        </td>
-        <td colspan="2">
-            <p class="subtitle">User ID:</p>
-        </td>
-        <td>
-            <div id="uid"></p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <img src="/images/phone.png" title ="phone-icon" class="icon" />
-        </td>
-        <td colspan="2">
-            <p class="subtitle">Phone:</p>
-        </td>
-        <td>
-            <div id="phone"></p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <img src="/images/bio.png" title ="bio-icon" class="icon" />
-        </td>
-        <td colspan="2">
-            <p class="subtitle">Bio:</p>
-        </td>
-        <td>
-            <div id="biography"></p>
-        </td>
-      </tr>
-    </table>
-  </div>
+    <div class="key_profiles">
+      <div class="key_profile">
+        <img class="profile_label" src="/images/age.png" />
+        <p id="age">20</p>
+      </div>
+      <div class="key_profile">
+          <img class="profile_label" src="/images/gender.svg" />
+        <p id="gender">Male</p>
+      </div>
+      <div class="key_profile">
+          <img class="profile_label" src="/images/height.png" />
+        <p id="height">180cm</p>
+      </div>
+      <div class="key_profile">
+          <img class="profile_label" src="/images/weight.png" />
+        <p id="weight">60kg</p>
+      </div>
+    </div>
 
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <%include partials/footer%>
+    <div class="mainBody">
+      <table>
+        <tr>
+          <td>
+            <img src="/images/id.png" title ="id-icon" class="icon" />
+          </td>
+          <td colspan="2">
+              <p class="subtitle">User ID:</p>
+          </td>
+          <td>
+              <div id="uid"></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="/images/phone.png" title ="phone-icon" class="icon" />
+          </td>
+          <td colspan="2">
+              <p class="subtitle">Phone:</p>
+          </td>
+          <td>
+              <div id="phone"></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+              <img src="/images/address.png" title ="address-icon" class="icon" />
+          </td>
+          <td colspan="2">
+              <p class="subtitle">Address:</p>
+          </td>
+          <td>
+              <div id="address"></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="key_profiles">
+        <a class="nav-link" href="leaderboard">
+          <img src="/images/lb.png" title ="bio-icon" class="profile_link_image" />
+        </a>
+        <img src="/images/graph.png" class="profile_link_image" />
+    </div>
   </div>
+<%include partials/footer%>
