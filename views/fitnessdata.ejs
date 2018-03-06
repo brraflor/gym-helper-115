@@ -14,6 +14,7 @@ initApp = function() {
       console.log(uid)
       user.getIdToken().then(function(accessToken) {
         document.getElementById('uid').value = uid;
+
       });
 
     } else {
@@ -27,6 +28,7 @@ window.addEventListener('load', function() {
   initApp()
 });
 </script>
+
 <html>
   <head>
     <% include partials/header %>
@@ -34,6 +36,7 @@ window.addEventListener('load', function() {
   </head>
   <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
   <script src="js/initFirebase.js" ></script>
+  <script src=js/journaldata.js></script>
   <!-- Style  -->
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/data.css">

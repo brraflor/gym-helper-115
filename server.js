@@ -151,22 +151,29 @@ app.post("/updatejournal", (req, res) => {
   });
 
   var ref = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total');
-
+  var totals = firebase.database().ref('exercises/' + exercise);
   ref.once("value").then(function(snapshot) {
     console.log('before if statement');
     //console.log(snapshot.child('total'));
-    if(snapshot.child('total').exists()){
+   if(snapshot.child('total').exists()) {
 
       var pasttotal = snapshot.child('total').val();
       var total = parseInt(pasttotal) + (parseInt(reps) * parseInt(sets));
       firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total').set({
         total: total
       });
+      firebase.database().ref('leaderboard/' + exercise).set({
+        [uid]: total
+      });
+
     } else {
       console.log('in else');
       var total = (parseInt(reps) * parseInt(sets));
       firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total').set({
         total: total
+      });
+      firebase.database().ref('leaderboard/' + exercise).set({
+        [uid]: total
       });
     }
   });
