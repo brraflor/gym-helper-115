@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<script>
+initApp = function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      var uid = user.uid;
+      var phoneNumber = user.phoneNumber;
+      var providerData = user.providerData;
+      console.log(uid)
+      user.getIdToken().then(function(accessToken) {
+        document.getElementById('uid').value = uid;
+      });
+
+    } else {
+      // User is signed out.
+    }
+  }, function(error) {
+    console.log(error);
+  });
+};
+window.addEventListener('load', function() {
+  initApp()
+});
+</script>
+<html>
+  <head>
+    <% include partials/header %>
+    <title>BMI</title>
+  </head>
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script src="js/initFirebase.js" ></script>
+  <!-- Style  -->
+  <link rel="stylesheet" href="/css/nav.css">
+  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <!-- End-Style  -->
+  <body>
+    <div class="page">
+      <% include partials/nav %>
+
+      <form class="mainBody" method="post" action="/updatehtwt">
+        <div class="form-row align-items-center">
+
+          <div class="sub-body">
+            <div class="form-row">
+              <div class="col">
+                <input name="height" type="text" class="form-control" placeholder="Heights">
+              </div>
+              <div class="col">
+                <input name="weight" type="text" class="form-control" placeholder="Weights in Pounds">
+              </div>
+              <div class="col">
+                <input name="bmi" type="text" class="form-control" placeholder="BMI">
+              </div>
+              <div class="col">
+                <input name="metabolism" type="text" class="form-control" placeholder="Basal Metabolism">
+              </div>
+              <div class="col">
+                <input name="fat" type="text" class="form-control" placeholder="Body Fat">
+              </div>
+              <div class="col">
+                <input name="muscle" type="text" class="form-control" placeholder="Muscle Content">
+              </div>
+              <div class="col">
+                <input name="heart" type="text" class="form-control" placeholder="Static Heart Rate">
+              </div>
+            </div>
+          </div>
+          <div class="sub-body">
+            <input name="userid" type="hidden" class="form-control" id="uid" >
+            <button class="submit-button" type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+
+
+    </div>
+  </body>
+</html>
