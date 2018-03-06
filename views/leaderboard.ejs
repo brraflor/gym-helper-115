@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<script>
+initApp = function() {
+  var refUerList = firebase.database().ref(users);
+  refUerList.orderByChild("journal/pullups/total").on("child-added", function(snapshot){
+    var uid = snapshot.key;
+    var name = admin.auth().getUser(uid)
+    var sets = snapshot.val().total;
+    console.log(uid)
+      user.getIdToken().then(function(accessToken) {
+        document.getElementById('name1').textContent = name;
+        document.getElementById('sets').textContent = sets;
+      });
+  }, function(error) {
+    console.log(error);
+  });
+};
+window.addEventListener('load', function() {
+  initApp()
+});
+</script>
+<html>
+  <head>
+    <% include partials/header %>
+    <title>User Journal</title>
+  </head>
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script src="js/initFirebase.js" ></script>
+  <!-- Style  -->
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/data.css">
+  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <!-- End-Style  -->
+  <body>
+    <div class="page">
+      <% include partials/nav %>
+      <div class="box">
+        <div class="head">
+          <div id="rank1">
+            <p class="leaderboard_rank">1</p>
+            <div class="leaderboard">
+              <h2 class="leaderboard_text" id="name1">Name1</h2>
+            </div>
+            <div class="leaderboard_img">
+                <img class="profile" src=profile_picture alt ="profile_picture" title ="profile_picture" width=25px/>
+            </div>
+            <div class="leaderboard_sets">
+              <h2 class="leaderboard_text" id="sets">sets1</h2>
+            </div>
+          </div>
+
+          <div id="rank2">
+            <p class="leaderboard_rank">2</p>
+            <div class="leaderboard">
+              <h2 class="leaderboard_text" id="name2">Name2</h2>
+            </div>
+            <div class="leaderboard_img">
+              <img class="profile" src=profile_picture alt ="profile_picture" title ="profile_picture" width=25px/>
+            </div>
+            <div class="leaderboard_sets">
+              <h2 class="leaderboard_text" id="sets">sets2</h2>
+            </div>
+          </div>
+
+          <div id="rank3">
+            <p class="leaderboard_rank">3</p>
+            <div class="leaderboard">
+              <h2 class="leaderboard_text" id="name3">Name3</h2>
+            </div>
+            <div class="leaderboard_img">
+              <img class="profile" src=profile_picture alt ="profile_picture" title ="profile_picture" width=25px/>
+            </div>
+            <div class="leaderboard_sets">
+              <h2 class="leaderboard_text" id="sets">sets3</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    </div>
+  </body>
+</html>
