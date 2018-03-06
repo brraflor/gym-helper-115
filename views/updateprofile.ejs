@@ -4,9 +4,35 @@
     <title>Information</title>
     <% include partials/header %>
   </head>
+<script>
+initApp = function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      var uid = user.uid;
+      var phoneNumber = user.phoneNumber;
+      var providerData = user.providerData;
+      console.log(uid)
+      user.getIdToken().then(function(accessToken) {
+        document.getElementById('uid').value = uid;
+      });
 
+    } else {
+      // User is signed out.
+    }
+  }, function(error) {
+    console.log(error);
+  });
+};
+window.addEventListener('load', function() {
+  initApp()
+});
+</script>
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-<script src="js/initFirebase.js"></script>
 <script src="js/firebaseinfo.js"></script>
 <!-- Style  -->
 <link rel="stylesheet" href="/css/nav.css">
@@ -72,7 +98,7 @@
             <input name="zip" type="value" class="form-control" id="inputZip">
           </div>
           <div class="form-group col-md-2">
-            <input name="userid" type="hidden" class="form-control" id="uid">
+            <input name="userid" type="hidden" id="uid">
             <button class="submit-button" type="submit" class="btn btn-primary">Submit</button>
           </div>
         </div>
@@ -89,4 +115,3 @@
 </div>
 
 
-<%include partials/footer%>

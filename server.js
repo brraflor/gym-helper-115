@@ -98,7 +98,7 @@ app.post("/tst", (req, res) => {
   var sets = data.sets;
   var reps = data.reps;
   var exercise = data.exercise;
-  var uid = data.uid;
+  var uid = data.userid;
 
   firebase.database().ref('users/' + uid + '/profile').set({
     firstName: data.first,
@@ -117,6 +117,7 @@ app.post("/tst", (req, res) => {
   console.log(city);
   console.log(state);
   console.log(zip);
+  console.log(uid);
   res.render("profile");
 
 });
