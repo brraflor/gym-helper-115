@@ -80,6 +80,10 @@ app.get('/fitnessdata', function(req, res){
   res.render('fitnessdata');
 });
 
+app.get('/leaderboard', function(req, res){
+  res.render('leaderboard');
+});
+
 
 app.post("/tst", (req, res) => {
   var data= req.body;

@@ -116,3 +116,25 @@ option {
 .ex {
   margin-right: 40px;
 }
+.leaderboard_rank {
+  width: 5%;
+  margin-left: 3%;
+}
+.leaderboard_img {
+  width: 40%;
+  float: left;
+}
+
+.leaderboard {
+  width: 40%;
+  float: left;
+}
+
+.leaderboard_sets {
+  width: 12%;
+  float: left;
+}
+.leaderboard_text {
+  font-size: 20px;
+  padding: 10px 0;
+}
