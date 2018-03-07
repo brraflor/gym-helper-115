@@ -9,7 +9,7 @@ initApp = function() {
       var uid = user.uid;
       var phoneNumber = user.phoneNumber;
       var providerData = user.providerData;
-      var ref = firebase.database().ref('users/'  uid + '/journal');
+      var ref = firebase.database().ref('users/' + uid + '/journal');
       ref.once('value').then(function(snapshot){
         var pushupsexist = snapshot.exists('pushups/total');
         var pushupsref = snapshot.child('pushups/total');
