@@ -35,6 +35,7 @@
             <div id="chatPanel" class="panel-heading">Group Chat</div>
             <div class="panel-body">
                 <p ng-repeat="m in messages">{{m.name}} - {{m.date | date:'medium'}} : {{m.message}} </p>
+                <p>  </p>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Message here..." ng-model="messageText">
                 </div>

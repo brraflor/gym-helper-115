@@ -74,6 +74,16 @@ window.addEventListener('load', function() {
 <div style="width: 400px;center">
   <canvas id="myChart" width="400" height="400"></canvas>
 <script>
+  var ref = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total');
+  var totals = firebase.database().ref('exercises/' + exercise);
+
+
+    var xvalue= snapshot.child('total').val();
+    console.log("xvalue: "+ xvalue)
+
+
+
+
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
