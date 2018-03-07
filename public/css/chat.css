@@ -8,3 +8,9 @@
   color: white;
   border-radius: 25px;
 }
+
+.chatImg{
+   border-radius: 25px;
+   height: 128px;
+   width: 128px;
+}

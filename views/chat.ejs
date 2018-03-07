@@ -23,16 +23,16 @@
     <div class="container">
   <ul class="nav nav-pills" role="tablist">
   <li role="presentation" class="active">
-  <li> <a href="#" ng-click="clicked(1)">General</a></li>
-  <li> <a href="#" ng-click="clicked(2)">Cardio</a></li>
-  <li> <a href="#" ng-click="clicked(3)">Bulking</a></li>
-  <li> <a href="#" ng-click="clicked(4)">Yoga</a></li>
-  <li> <a href="#" ng-click="clicked(5)">Dieting</a></li>
+  <li> <a href="#" ng-click="clicked(1)"><img class="chatImg" src="images/casual.jpg"/></a></li>
+  <li> <a href="#" ng-click="clicked(2)"><img class="chatImg" src="images/cardio.jpeg"/></a></li>
+  <li> <a href="#"ng-click="clicked(3)"><img class="chatImg" src="images/bulk.jpeg"  /></a></li>
+  <li> <a href="#" ng-click="clicked(4)"><img class="chatImg" src="images/yoga.jpeg"  /></a></li>
+  <li> <a href="#" ng-click="clicked(5)"><img class="chatImg" src="images/food.jpeg"  /></a></li>
 <!--   <li> <a href="#" ng-click="clicked(6)">Private</a></li> -->
     </ul>
 
         <div class="panel panel-primary">
-            <div id="chatPanel" class="panel-heading">Group Chat</div>
+            <div id="chatPanel" class="panel-heading">Chat</div>
             <div class="panel-body">
                 <p ng-repeat="m in messages">{{m.name}} - {{m.date | date:'medium'}} : {{m.message}} </p>
                 <p>  </p>
