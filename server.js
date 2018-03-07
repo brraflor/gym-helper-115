@@ -118,6 +118,9 @@ app.post("/updatejournal", (req, res) => {
   var dd = today.getDate();
   var mm = today.getMonth()+1; //January is 0!
   var yyyy = today.getFullYear();
+  var hr = today.getHours();
+  var min = today.getMinutes();
+  var sec = today.getSeconds();
 
   if(dd<10) {
       dd = '0'+dd
@@ -128,18 +131,36 @@ app.post("/updatejournal", (req, res) => {
   }
 
   today = mm + '_' + dd + '_' + yyyy;
+  var todayFull = mm + '_' + dd + '_' + yyyy + ' ' + hr + ':' + min + ':' + sec;
   //get total for exercise
 
   //push into database
-  firebase.database().ref('users/' + uid + '/journal/' + exercise +'/'+ today).set({
+  firebase.database().ref('users/' + uid + '/journal/' + exercise +'/'+ todayFull).set({
   reps: reps,
   sets: sets
+  });
+  var tpdRef = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/tpd/' + [today]);
+
+  tpdRef.once('value').then(function(snapshot){
+    if(snapshot.child(today).exists()){
+      var todayTotal = snapshot.child(today).value;
+      var todayTotal = todayTotal + (reps * sets);
+      tpdRef.set({
+        [today]: todayTotal
+      })
+    }
+    else {
+      var todayTotal = (reps * sets);
+      tpdRef.set({
+        [today]: todayTotal
+      })
+    }
   });
 
   var ref = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total');
   var totals = firebase.database().ref('exercises/' + exercise);
   ref.once("value").then(function(snapshot) {
-    console.log('before if statement');
+    //console.log('before if statement in total');
     //console.log(snapshot.child('total'));
    if(snapshot.child('total').exists()) {
 
@@ -148,12 +169,12 @@ app.post("/updatejournal", (req, res) => {
       firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total').set({
         total: total
       });
-      firebase.database().ref('leaderboard/' + exercise).set({
+      firebase.database().ref('leaderboard/' + exercise).update({
         [uid]: total
       });
 
     } else {
-      console.log('in else');
+      //console.log('in else');
       var total = (parseInt(reps) * parseInt(sets));
       firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total').set({
         total: total
