@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Information</title>
-    <% include partials/header %>
-  </head>
 <script>
 initApp = function() {
   firebase.auth().onAuthStateChanged(function(user) {
@@ -32,13 +27,22 @@ window.addEventListener('load', function() {
   initApp()
 });
 </script>
+<html>
+  <head>
+    <title>Information</title>
+    <% include partials/header %>
+  </head>
+
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-<script src="js/firebaseinfo.js"></script>
+<script src="js/initFirebase.js" ></script>
+
 <!-- Style  -->
 <link rel="stylesheet" href="/css/nav.css">
 <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <!-- End-Style  -->
+
+
   <% include partials/nav %>
       <!--Sign Up Page -->
   <div class="page">
@@ -113,5 +117,4 @@ window.addEventListener('load', function() {
         </div> -->
   </form>
 </div>
-
 
