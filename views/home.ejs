@@ -4,6 +4,38 @@
     <title>Home</title>
     <% include partials/header %>
   </head>
+<script>
+initApp = function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      var uid = user.uid;
+      var phoneNumber = user.phoneNumber;
+      var providerData = user.providerData;
+      console.log(uid)
+      user.getIdToken().then(function(accessToken) {
+        document.getElementById('uid').textContent = uid;
+	document.getElementById('sign-in-status').textContent = 'Signed in';
+	document.getElementById('name').textContent = displayName;
+      });
+
+    } else {
+      // User is signed out.
+    }
+  }, function(error) {
+    console.log(error);
+  });
+};
+window.addEventListener('load', function() {
+  initApp()
+});
+</script>
+
+
 
   <!-- Style  -->
   <link rel="stylesheet" href="/css/home.css">
@@ -11,6 +43,10 @@
   <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <!-- End-Style  -->
+
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script src="js/initFirebase.js" ></script>
+  <script src="js/firebaseinfo.js" ></script>
   <link rel="stylesheet" href="/css/owl.carosel.scss">
   <link rel="stylesheet" href="/css/owl.theme.default.scss">
 <% include partials/nav %>
@@ -50,5 +86,3 @@
   </div>
 </div>
 
-
-<%include partials/footer%>
