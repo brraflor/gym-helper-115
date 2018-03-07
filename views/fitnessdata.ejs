@@ -1,39 +1,11 @@
 <!DOCTYPE html>
-<script>
-initApp = function() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var uid = user.uid;
-      var phoneNumber = user.phoneNumber;
-      var providerData = user.providerData;
-      console.log(uid)
-      user.getIdToken().then(function(accessToken) {
-        document.getElementById('uid').value = uid;
-
-      });
-
-    } else {
-      // User is signed out.
-    }
-  }, function(error) {
-    console.log(error);
-  });
-};
-window.addEventListener('load', function() {
-  initApp()
-});
-</script>
 
 <html>
   <head>
     <% include partials/header %>
     <title>User Journal</title>
   </head>
+  <h2 id="db">hi</h2>
   <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
   <script src="js/initFirebase.js" ></script>
   <script src="js/journaldata.js" ></script>
@@ -46,6 +18,96 @@ window.addEventListener('load', function() {
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <!-- End-Style  -->
+
+<script>
+var uid = 0
+initApp = function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      uid = user.uid;
+      var phoneNumber = user.phoneNumber;
+      var providerData = user.providerData;
+      user.getIdToken().then(function(accessToken) {
+        document.getElementById('uid').value = uid;
+      
+      });
+    } else {
+      // User is signed out.
+    }
+  }, function(error) {
+    console.log(error);
+  });
+};
+window.addEventListener('load', function() {
+  initApp()
+});
+var ref = firebase.database().ref('users/' + uid + '/journal/' + 'pushups');
+  console.log(ref)
+  var totals = firebase.database().ref('exercises/' + exercise);
+  document.getElementById('db').textContent = ref;
+
+
+
+    var xvalue= snapshot.child('total').val();
+    console.log("xvalue: "+ xvalue)
+
+
+
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
+</script>
+<h2 id="db"></h2>
+
   <body>
     <div class="page">
       <% include partials/nav %>
@@ -75,8 +137,11 @@ window.addEventListener('load', function() {
 <div style="width: 400px;center">
   <canvas id="myChart" width="400" height="400"></canvas>
 <script>
-  var ref = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total');
+  var ref = firebase.database().ref('users/' + uid + '/journal/' + exercise);
+  console.log(ref)
   var totals = firebase.database().ref('exercises/' + exercise);
+  document.getElementById('db').textContent = ref;
+        
 
 
     var xvalue= snapshot.child('total').val();
