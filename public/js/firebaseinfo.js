@@ -26,6 +26,13 @@ initApp = function() {
           accessToken: accessToken,
           providerData: providerData
         }, null, '  ');
+        console.log("firebaseinfo check");
+        firebase.database().ref('users/' + uid + '/generatedUserInfo').set({
+          username = displayName,
+          email = email,
+          photoURL = photoURL
+        });
+        console.log("post firebaseinfo check");
       });
 
     } else {

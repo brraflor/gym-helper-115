@@ -66,7 +66,7 @@ app.get('/updateBMI', function(req, res){
 
 
 
-app.post("/tst", (req, res) => {
+app.post("/updateInformation", (req, res) => {
   var data= req.body;
   //name
   var name = data.first;
@@ -139,21 +139,22 @@ app.post("/updatejournal", (req, res) => {
   reps: reps,
   sets: sets
   });
-  var tpdRef = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/tpd/' + [today]);
+  var tpdRef = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/tpd/');
 
   tpdRef.once('value').then(function(snapshot){
     if(snapshot.child(today).exists()){
-      var todayTotal = snapshot.child(today).value;
+      var todayTotal = snapshot.child([today]).val();
+
       var todayTotal = todayTotal + (reps * sets);
-      tpdRef.set({
+      tpdRef.update({
         [today]: todayTotal
-      })
+      });
     }
     else {
       var todayTotal = (reps * sets);
-      tpdRef.set({
+      tpdRef.update({
         [today]: todayTotal
-      })
+      });
     }
   });
 
