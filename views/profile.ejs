@@ -58,6 +58,29 @@
       </div>
     </div>
 
+    <form method="post" action="/updateleaderboard" class="profile_leaderboard">
+      <table>
+        <tr>
+          <td>
+            <a type="submit" class="nav-link" class="profile_link" href="leaderboard">
+              <img src="/images/lb.png" title ="leaderboard-icon" class="icon" />
+              <p class="profile_link_text">Leaderboard of exericise: </p>
+            </a>
+          </td>
+          <td>
+            <select class="profile_link_text" name="exercise" class="custom-select mr-sm-1" id="inlineFormCustomSelect">
+                <optgroup>
+                  <option selected>Choose an Exercise</option>
+                  <option value="pullups">Pushups</option>
+                  <option value="pullups">Pullups</option>
+                  <option value="situps">Situps</option>
+                </optgroup>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </form>
+
     <div class="mainBody">
       <table>
         <tr>
@@ -95,13 +118,5 @@
         </tr>
       </table>
     </div>
-
-    <div class="key_profiles">
-        <a class="nav-link" href="leaderboard">
-          <img src="/images/lb.png" title ="bio-icon" class="profile_link_image" />
-        </a>
-        <img src="/images/graph.png" class="profile_link_image" />
-    </div>
   </div>
-  </html>
 <%include partials/footer%>
