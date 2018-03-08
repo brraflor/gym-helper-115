@@ -64,6 +64,33 @@ app.get('/updateBMI', function(req, res){
   res.render('updateBMI');
 });
 
+app.post("/updateheightweight", (req, res) => {
+  var data = req.body;
+  var height = data.height;
+  var weight = data.weight;
+  //var bmi = data.bmi;
+  var heartrate = data.heart;
+  var uid = data.uid
+
+  var intHeight = parseInt(height) / 100;
+  var intWeight = parseInt(weight) / 100;
+  var bmi = (intWeight / intHeight) / intHeight;
+//broca ideal body weight for gender
+  var brocaInt = ((intHeight * 100)-100);
+  var brocaM = brocaInt - (brocaInt * .1);
+  var brocaW = brocaInt - (brocaInt * .15);
+//IBW = ideal body weight
+  firebase.database().ref('users/'+ uid + '/profile/bodyinfo').update({
+    height: height,
+    weight: weight,
+    staticHR: heartrate,
+    bmi: bmi,
+    maleIBW: brocaM,
+    femaleIBW: brocaW
+  });
+  res.render('home');
+});
+
 
 
 app.post("/updateInformation", (req, res) => {
