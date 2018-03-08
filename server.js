@@ -91,7 +91,18 @@ app.post("/updateheightweight", (req, res) => {
   res.render('home');
 });
 
+app.post("/updateleaderboard", (req, res) => {
+  var data = req.body;
+  var uid = data.userid;
+  var exercise = data.exercise;
 
+  console.log(data)
+
+  firebase.database().ref('users/' + uid + '/leaderboard/' + exercise).set({
+    exercise: exercise
+  });
+  res.render('leaderboard');
+});
 
 app.post("/updateInformation", (req, res) => {
   var data= req.body;
