@@ -6,26 +6,49 @@ initApp = function() {
       // User is signed in.
       var displayName = user.displayName;
       var uid = user.uid;
-      var exerciseStr = "";
+      var exerciseStr = "none";
       var rankOfUsersInLeaderboard = 0;
-      console.log(uid);
+      console.log("the id is " + uid);
       
-      var refLeaderboard = firebase.database().ref("leaderboard");
-      var exercise = firebase.database().ref('users/' + uid + '/leaderboard/exercise').once('value').then(function(snapshot) {
+      firebase.database().ref('users/' + uid + '/leaderboard/exercise').once('value').then(function(snapshot) {
         exerciseStr = snapshot.val();
-      });
+        var refLeaderboard = firebase.database().ref("leaderboard/" + exerciseStr);
 
-      console.log(exerciseStr);
-      console.log ('spacer');
-      refLeaderboard.orderByValue(exerciseStr).on("value", function(snapshot){
-        snapshot.forEach(function(data) {
-          rankOfUsersInLeaderboard = rankOfUsersInLeaderboard+1;
-          document.write('<div class="head"><div><p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ data.key + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + data.val() + '</h2></div></div>');//not complete
+        console.log("the exercise is: " + exerciseStr);
+        console.log ('spacer');
+        
+        //printing the page in js
+        
+        document.write('<html><head>' + `<% include partials/header %>` + '<title>User Journal</title></head>');
+        /*document.write('<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"/>');
+        document.write('<script src="js/initFirebase.js"/>');*/
+        //Style
+        
+        document.write('<link rel="stylesheet" href="/css/nav.css">');
+        document.write('<link rel="stylesheet" href="/css/data.css">');
+        document.write('<link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">');
+        /*document.write('<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"/>');*/
+        //end style
+
+        document.write('<body><div class="page">' + `<% include partials/nav %>` + '<div class="box"><div class="head">');
+
+        refLeaderboard.orderByValue().on("value", function(snapshot){
+          snapshot.forEach(function(data) {
+            rankOfUsersInLeaderboard = rankOfUsersInLeaderboard+1;
+            var currUserName = "hh";
+            firebase.database().ref('users/' + data.key + '/username').on('value',function(snapshotName) {
+              currUserName = snapshotName.val();
+              console.log("the key is: " + currUserName);
+              document.write('<div><p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ currUserName + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + data.val() + '</h2></div></div>');
+            });
+            document.write('<div><p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ currUserName + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + data.val() + '</h2></div></div>');
+          });
+
+          document.write('</div></div><p>&nbsp;</p><p>&nbsp;</p></div>');
+          document.write('</body></html>');
         });
-
-        document.write('</div></div><p>&nbsp;</p><p>&nbsp;</p></div>');
-        document.write('</body>/html>');
       });
+      
 
     } else {
       console.log('user is signed out');

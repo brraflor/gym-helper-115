@@ -91,7 +91,7 @@ app.post("/updateheightweight", (req, res) => {
   res.render('home');
 });
 
-app.post("/updateleaderboard", (req, res) => {
+app.post("/leaderboard", (req, res) => {
   var data = req.body;
   var uid = data.userid;
   var exercise = data.exercise;
