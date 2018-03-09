@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <script>
 initApp = function() {
-  var refUerList = firebase.database().ref(users);
-  refUerList.orderByChild("journal/pullups/total").on("child-added", function(snapshot){
-    var uid = snapshot.key;
-    var name = admin.auth().getUser(uid)
-    var sets = snapshot.val().total;
-    console.log(uid)
-      user.getIdToken().then(function(accessToken) {
-        document.getElementById('name1').textContent = name;
-        document.getElementById('sets').textContent = sets;
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var uid = user.uid;
+      console.log(uid)
+      
+      var refLeaderboard = firebase.database().ref("leaderboard");
+      var exercise = firebase.database().ref('users/' + uid + '/leaderboard/exercise');//not complete
+      refLeaderboard.orderByValue(exercise).on("value", function(snapshot){
+        snapshot.forEach(function(data) {
+          ;//not complete
+        });
       });
+
+    } else {
+      // User is signed out.
+    }
   }, function(error) {
     console.log(error);
   });

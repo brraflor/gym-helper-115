@@ -97,8 +97,9 @@ app.post("/updateleaderboard", (req, res) => {
   var exercise = data.exercise;
 
   console.log(data)
+  console.log(uid)
 
-  firebase.database().ref('users/' + uid + '/leaderboard/' + exercise).set({
+  firebase.database().ref('users/' + uid + '/leaderboard').set({
     exercise: exercise
   });
   res.render('leaderboard');
