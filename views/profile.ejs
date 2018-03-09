@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<script>
+initApp = function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var uid = user.uid;
+      console.log(uid)
+      user.getIdToken().then(function(accessToken) {
+        document.getElementById('uid').value = uid;
+      });
+    } else {
+      // User is signed out.
+    }
+  }, function(error) {
+    console.log(error);
+  });
+};
+window.addEventListener('load', function() {
+  initApp()
+});
+</script>
 <html>
   <head>
     <title>Profile</title>
@@ -15,7 +37,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <!-- End-Style  -->
   <% include partials/nav %>
-<pid="name"></p>  
+<pid="name"></p>
   <div class="page">
     <p>&nbsp;</p>
     <div class="box">
@@ -59,6 +81,7 @@
     </div>
 
     <form method="post" action="/updateleaderboard" class="profile_leaderboard">
+      <input name="userid" type="hidden" id="uid">
       <table>
         <tr>
           <td>
