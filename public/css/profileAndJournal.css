@@ -175,6 +175,12 @@ blockquote {
   margin-bottom:20px;
   margin-left:20px;
 }
+@media screen and (max-width: 815px) {
+  #select-exercise {
+    width: 80%;
+    margin-left: auto;
+  }
+}
 option {
   font-size: 45px;
 }
