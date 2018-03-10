@@ -17,6 +17,7 @@ initApp = function() {
         var situpsref = snapshot.child('situps/total');
         var pullupsexist = snapshot.exists('pullups/total');
         var pullupsref = snapshot.child('pullups/total');
+        
 
         user.getIdToken().then(function(accessToken) {
           document.getElementById('pushups') = parseElements(pushupsexist, pushupsref);
