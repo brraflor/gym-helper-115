@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-
-
 <html>
   <head>
     <title>Profile</title>
@@ -25,7 +23,7 @@
     <table class="head">
       <tr>
         <td rowspan="2">
-            <img src=profile_picture class="profile" alt ="profile_picture" title ="profile_picture" width=100px />
+            <img id ="profile_pic"  class="profile" alt ="profile_picture" width=100px />
         </td>
         <td>
           <h2 id="name"></h2>
@@ -91,7 +89,7 @@
         </table>
       </form>
 
-    <div class="mainBody">
+    <!-- <div class="mainBody">
       <table>
         <tr>
           <td>
@@ -127,7 +125,7 @@
           </td>
         </tr>
       </table>
-    </div>
+    </div> -->
   </div>
   <script>
   initApp = function() {
@@ -168,11 +166,19 @@
         firebase.database().ref('users/' + uid + '/profile').once('value').then(function(snapshot) {
           address = snapshot.child('address').val();
           age = snapshot.child('age').val();
+          firstName = snapshot.child('firstName').val();
+
+          document.getElementById("age").innerHTML = age;
 
           console.log(age);
-
         });
 
+        firebase.database().ref('users/' + uid ).once('value').then(function(snapshot) {
+          profileImg = snapshot.child('profile_picture').val();
+
+          document.getElementById("profile_pic").src = profileImg;
+          console.log(profileImg);
+          });
 
       } else {
         console.log('user is signed out');
@@ -188,9 +194,5 @@
   });
   </script>
 
-  <script>
-    document.getElementById("age").innerHTML = age;
-    document.getElementById("address").textContent = address;
-  </script>
 
 <%include partials/footer%>
