@@ -43,13 +43,16 @@ window.addEventListener('load', function() {
   <body>
     <div class="page">
       <% include partials/nav %>
+
+
+<!-- sets section -->
       <p>&nbsp;</p>
       <form class="mainBody" method="post" action="/updatejournal">
         <div class="form-row align-items-center">
           <div class="sub-body">
             <div class="col-auto my-1">
               <img src="/images/exercise.jpg" id="exercise" title ="exercise_picture" width=70px />
-              <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Exercise &nbsp;</label>
+              <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Strength Training &nbsp;</label>
               <select id="select-exercise"class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                   <optgroup>
                     <option selected>Choose an Exercise</option>
@@ -79,8 +82,39 @@ window.addEventListener('load', function() {
         </div>
       </form>
 
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
+<!-- distance section -->
+
+      <form class="mainBody" method="post" action="/updatejournal">
+        <div class="form-row align-items-center">
+          <div class="sub-body">
+            <div class="col-auto my-1">
+              <img src="/images/exercise.jpg" id="exercise" title ="exercise_picture" width=70px />
+              <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Aerobic Exercise &nbsp;</label>
+              <select id="select-exercise"class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                  <optgroup>
+                    <option selected>Choose an Exercise</option>
+                    <option value="running">Running</option>
+                    <option value="swimming">Swimming</option>
+                    <option value="walking">Walking</option>
+                  </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="sub-body">
+            <div class="form-row">
+              <div class="col">
+                <input name="sets" type="text" class="form-control" placeholder="miles">
+              </div>
+            </div>
+          </div>
+          <div class="sub-body">
+            <input name="userid" type="hidden" class="form-control" id="uid" >
+            <input name="displayName" type="hidden" class="form-control" id="displayName">
+            <button class="submit-button" type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
   </body>
 </html>
