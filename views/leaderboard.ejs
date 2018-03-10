@@ -33,19 +33,53 @@ initApp = function() {
         document.write('<body><div class="page">' + `<% include partials/nav %>` + '<div class="box"><div class="head">');
 
         refLeaderboard.orderByValue().on("value", function(snapshot){
+          const val = [];
+          const key = [];
+          var rankOfUsersInLeaderboard = 0;
+          
+
+          
           snapshot.forEach(function(data) {
-            rankOfUsersInLeaderboard = rankOfUsersInLeaderboard+1;
-            var currUserName = "hh";
-            firebase.database().ref('users/' + data.key + '/username').on('value',function(snapshotName) {
-              currUserName = snapshotName.val();
-              console.log("the key is: " + currUserName);
-              document.write('<div><p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ currUserName + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + data.val() + '</h2></div></div>');
-            });
-            document.write('<div><p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ currUserName + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + data.val() + '</h2></div></div>');
+            rankOfUsersInLeaderboard = rankOfUsersInLeaderboard + 1;
+            val.push(data.val());
+            key.push(data.key);
+            document.write('<div><p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ data.key + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + data.val() + '</h2></div></div>');
           });
+          
+          //Trash code
+          /*
+          const userNames = [];
+          var promises = []
+          for (i = val.length-1; i>=0; i--){
+            promises.push(new Promise((resolve, reject) => {
+              firebase.database().ref('users/' + key[i] + '/username').once('value').then(function(snapshotName) {
+                rankOfUsersInLeaderboard = rankOfUsersInLeaderboard+1;
+                userNames.push(snapshotName.val());
+                console.log("the 1st name is: " + snapshotName.val());
+                console.log("the 1st val is: " + val[val.length-rankOfUsersInLeaderboard]);
+                console.log("the index is: " + rankOfUsersInLeaderboard);
+                document.write('<p>hhhhhhh</p>')
+                document.write('<div><p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ snapshotName.val() + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + val[val.length-1-i] + '</h2></div></div>');
+                resolve(snapshotName.val());
+              });
+            }));
+          }
+
+          Promise.all(promises).then((value) => {
+            for (i = 0; i<val.length; i++){
+              console.log("the name is: " + userNames[i]);
+              document.write('<div><p class="leaderboard_rank">' + i + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ userNames[i] + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + val[i] + '</h2></div></div>');
+              var newDiv = document.createElement("div"); 
+              var newContent = document.createTextNode(userNames[i]);
+              newDiv.appendChild(newContent);
+              document.body.appendChild(newDiv);
+            }
+          });*/
+
 
           document.write('</div></div><p>&nbsp;</p><p>&nbsp;</p></div>');
           document.write('</body></html>');
+         
         });
       });
       
@@ -84,28 +118,13 @@ window.addEventListener('load', function() {
           <div id="rank1">
             <p class="leaderboard_rank">1</p>
             <div class="leaderboard">
-              <h2 class="leaderboard_text" id="name1">Name1</h2>
-            </div>
-            <div class="leaderboard_img">
-                <img class="profile" src=profile_picture alt ="profile_picture" title ="profile_picture" width=25px/>
+              <h2 class="leaderboard_text" id="name1">UID</h2>
             </div>
             <div class="leaderboard_sets">
-              <h2 class="leaderboard_text" id="sets">sets1</h2>
+              <h2 class="leaderboard_text" id="sets">Number of sets</h2>
             </div>
           </div>
 
-          <div id="rank2">
-            <p class="leaderboard_rank">2</p>
-            <div class="leaderboard">
-              <h2 class="leaderboard_text" id="name2">Name2</h2>
-            </div>
-            <div class="leaderboard_img">
-              <img class="profile" src=profile_picture alt ="profile_picture" title ="profile_picture" width=25px/>
-            </div>
-            <div class="leaderboard_sets">
-              <h2 class="leaderboard_text" id="sets">sets2</h2>
-            </div>
-          </div>
         </div>
       </div>
       <p>&nbsp;</p>
