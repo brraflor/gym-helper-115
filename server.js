@@ -73,7 +73,7 @@ app.post("/updateheightweight", (req, res) => {
   var uid = data.uid
 
   var intHeight = parseInt(height) / 100;
-  var intWeight = parseInt(weight) / 100;
+  var intWeight = parseInt(weight);
   var bmi = (intWeight / intHeight) / intHeight;
 //broca ideal body weight for gender
   var brocaInt = ((intHeight * 100)-100);
@@ -113,17 +113,18 @@ app.post("/updateInformation", (req, res) => {
   var address = data.address;
   var city = data.city;
   var state = data.state;
+  var gender = data.gender;
   var zip = data.zip;
   var sets = data.sets;
   var reps = data.reps;
   var exercise = data.exercise;
   var uid = data.userid;
 
-  firebase.database().ref('users/' + uid + '/profile').set({
+  firebase.database().ref('users/' + uid + '/profile').update({
     firstName: data.first,
     lastName: data.last,
     age: data.age,
-    //gender: data.inlineFormCustomSelect,
+    gender: data.gender,
     address: data.address,
     city: data.city,
     state: data.state,
