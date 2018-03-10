@@ -47,15 +47,15 @@
       </div>
       <div class="key_profile">
           <img class="profile_label" src="/images/gender.svg" />
-        <p id="gender">Male</p>
+        <p id="gender"></p>
       </div>
       <div class="key_profile">
           <img class="profile_label" src="/images/height.png" />
-        <p id="height">180cm</p>
+        <p id="height"></p>
       </div>
       <div class="key_profile">
           <img class="profile_label" src="/images/weight.png" />
-        <p id="weight">60kg</p>
+        <p id="weight"></p>
       </div>
     </div>
 
@@ -161,17 +161,6 @@
         // User is signed in.
         var displayName = user.displayName;
         var uid = user.uid;
-        console.log("the id is " + uid);
-
-        firebase.database().ref('users/' + uid + '/profile').once('value').then(function(snapshot) {
-          address = snapshot.child('address').val();
-          age = snapshot.child('age').val();
-          firstName = snapshot.child('firstName').val();
-
-          document.getElementById("age").innerHTML = age;
-
-          console.log(age);
-        });
 
         firebase.database().ref('users/' + uid ).once('value').then(function(snapshot) {
           profileImg = snapshot.child('profile_picture').val();
@@ -179,6 +168,32 @@
           document.getElementById("profile_pic").src = profileImg;
           console.log(profileImg);
           });
+
+
+        firebase.database().ref('users/' + uid + '/profile').once('value').then(function(snapshot) {
+          address = snapshot.child('address').val();
+          age = snapshot.child('age').val();
+          firstName = snapshot.child('firstName').val();
+          gender = snapshot.child('gender').val();
+
+          document.getElementById("age").innerHTML = age;
+          document.getElementById("gender").innerHTML = gender;
+
+          console.log(age);
+        });
+
+        firebase.database().ref('users/' + uid +'/bodyinfo').once('value').then(function(snapshot) {
+          height = snapshot.child('height').val();
+          weight = snapshot.child('weight').val();
+
+          document.getElementById("height").innerHTML = height;
+          document.getElementById("weight").innerHTML = weight;
+
+        });
+
+
+
+
 
       } else {
         console.log('user is signed out');
