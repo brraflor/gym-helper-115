@@ -144,6 +144,7 @@ app.post("/updateInformation", (req, res) => {
 app.post("/updatejournal", (req, res) => {
   var data = req.body;
   var uid = data.userid;
+  var username = data.displayName;
   var date = data.date;
   var sets = data.sets;
   var reps = data.reps;
@@ -209,7 +210,7 @@ app.post("/updatejournal", (req, res) => {
         total: total
       });
       firebase.database().ref('leaderboard/' + exercise).update({
-        [uid]: total
+        [username]: total
       });
 
     } else {
@@ -219,7 +220,7 @@ app.post("/updatejournal", (req, res) => {
         total: total
       });
       firebase.database().ref('leaderboard/' + exercise).set({
-        [uid]: total
+        [username]: total
       });
     }
   });

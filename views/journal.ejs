@@ -14,6 +14,7 @@ initApp = function() {
       console.log(uid)
       user.getIdToken().then(function(accessToken) {
         document.getElementById('uid').value = uid;
+        document.getElementById('displayName').value = displayName;
       });
 
     } else {
@@ -72,6 +73,7 @@ window.addEventListener('load', function() {
           </div>
           <div class="sub-body">
             <input name="userid" type="hidden" class="form-control" id="uid" >
+            <input name="displayName" type="hidden" class="form-control" id="displayName">
             <button class="submit-button" type="submit" class="btn btn-primary">Submit</button>
           </div>
         </div>
