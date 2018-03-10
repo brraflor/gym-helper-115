@@ -211,60 +211,35 @@ app.post("/updatejournal", (req, res) => {
         [username]: total
       });
       //impliment achievements
-      var achieveRef = firebase.database().ref('users/' + uid + '/achievements/' + exercise);
+      var achieveRef = firebase.database().ref('users/' + uid + '/achievements');
       if (total > 100000) {
         achieveRef.update({
-          plat: 1,
-          diamond: 1,
-          gold: 1,
-          silver: 1,
-          bronze: 1
+          [exercise]: 5
         });
       } else
       if (total > 50000){
         achieveRef.update({
-          plat: 0,
-          diamond: 1,
-          gold: 1,
-          silver: 1,
-          bronze: 1
+          [exercise]: 4
         });
       } else
       if (total > 10000){
         achieveRef.update({
-          plat: 0,
-          diamond: 0,
-          gold: 1,
-          silver: 1,
-          bronze: 1
+          [exercise]: 3
         });
       } else
       if (total > 5000){
         achieveRef.update({
-          plat: 0,
-          diamond: 0,
-          gold: 0,
-          silver: 1,
-          bronze: 1
+          [exercise]: 2
         });
       } else
       if (total > 1000){
         achieveRef.update({
-          plat: 0,
-          diamond: 0,
-          gold: 0,
-          silver: 0,
-          bronze: 0
+          [exercise]: 1
         });
       } else{
         achieveRef.update({
-          plat: 0,
-          diamond: 0,
-          gold: 0,
-          silver: 0,
-          bronze: 0
+          [exercise]: 0
         });
-      }
       //end achievement implimentation
 
     } else {
@@ -277,60 +252,35 @@ app.post("/updatejournal", (req, res) => {
         [username]: total
       });
       //impliment achievements
-      var achieveRef = firebase.database().ref('users/' + uid + '/achievements/' + exercise);
+      var achieveRef = firebase.database().ref('users/' + uid + '/achievements');
       if (total > 100000) {
         achieveRef.update({
-          plat: 1,
-          diamond: 1,
-          gold: 1,
-          silver: 1,
-          bronze: 1
+          [exercise]: 5
         });
       } else
       if (total > 50000){
         achieveRef.update({
-          plat: 0,
-          diamond: 1,
-          gold: 1,
-          silver: 1,
-          bronze: 1
+          [exercise]: 4
         });
       } else
       if (total > 10000){
         achieveRef.update({
-          plat: 0,
-          diamond: 0,
-          gold: 1,
-          silver: 1,
-          bronze: 1
+          [exercise]: 3
         });
       } else
       if (total > 5000){
         achieveRef.update({
-          plat: 0,
-          diamond: 0,
-          gold: 0,
-          silver: 1,
-          bronze: 1
+          [exercise]: 2
         });
       } else
       if (total > 1000){
         achieveRef.update({
-          plat: 0,
-          diamond: 0,
-          gold: 0,
-          silver: 0,
-          bronze: 0
+          [exercise]: 1
         });
       } else{
         achieveRef.update({
-          plat: 0,
-          diamond: 0,
-          gold: 0,
-          silver: 0,
-          bronze: 0
+          [exercise]: 0
         });
-      }
       //end of achievements implimentation
     }
   });
