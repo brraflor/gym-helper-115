@@ -148,7 +148,6 @@ app.post("/updatejournal", (req, res) => {
   var date = data.date;
   var sets = data.sets;
   var reps = data.reps;
-  var exercise = data.exercise
   var exercise = data.exercise;
   console.log(data)
 
@@ -203,7 +202,6 @@ app.post("/updatejournal", (req, res) => {
     //console.log('before if statement in total');
     //console.log(snapshot.child('total'));
    if(snapshot.child('total').exists()) {
-
       var pasttotal = snapshot.child('total').val();
       var total = parseInt(pasttotal) + (parseInt(reps) * parseInt(sets));
       firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total').set({
@@ -212,6 +210,62 @@ app.post("/updatejournal", (req, res) => {
       firebase.database().ref('leaderboard/' + exercise).update({
         [username]: total
       });
+      //impliment achievements
+      var achieveRef = firebase.database().ref('users/' + uid + '/achievements/' + exercise);
+      if (total > 100000) {
+        achieveRef.update({
+          plat: 1,
+          diamond: 1,
+          gold: 1,
+          silver: 1,
+          bronze: 1
+        });
+      } else
+      if (total > 50000){
+        achieveRef.update({
+          plat: 0,
+          diamond: 1,
+          gold: 1,
+          silver: 1,
+          bronze: 1
+        });
+      } else
+      if (total > 10000){
+        achieveRef.update({
+          plat: 0,
+          diamond: 0,
+          gold: 1,
+          silver: 1,
+          bronze: 1
+        });
+      } else
+      if (total > 5000){
+        achieveRef.update({
+          plat: 0,
+          diamond: 0,
+          gold: 0,
+          silver: 1,
+          bronze: 1
+        });
+      } else
+      if (total > 1000){
+        achieveRef.update({
+          plat: 0,
+          diamond: 0,
+          gold: 0,
+          silver: 0,
+          bronze: 0
+        });
+      } else{
+        achieveRef.update({
+          plat: 0,
+          diamond: 0,
+          gold: 0,
+          silver: 0,
+          bronze: 0
+        });
+      }
+      //end achievement implimentation
 
     } else {
       //console.log('in else');
@@ -222,6 +276,62 @@ app.post("/updatejournal", (req, res) => {
       firebase.database().ref('leaderboard/' + exercise).set({
         [username]: total
       });
+      //impliment achievements
+      var achieveRef = firebase.database().ref('users/' + uid + '/achievements/' + exercise);
+      if (total > 100000) {
+        achieveRef.update({
+          plat: 1,
+          diamond: 1,
+          gold: 1,
+          silver: 1,
+          bronze: 1
+        });
+      } else
+      if (total > 50000){
+        achieveRef.update({
+          plat: 0,
+          diamond: 1,
+          gold: 1,
+          silver: 1,
+          bronze: 1
+        });
+      } else
+      if (total > 10000){
+        achieveRef.update({
+          plat: 0,
+          diamond: 0,
+          gold: 1,
+          silver: 1,
+          bronze: 1
+        });
+      } else
+      if (total > 5000){
+        achieveRef.update({
+          plat: 0,
+          diamond: 0,
+          gold: 0,
+          silver: 1,
+          bronze: 1
+        });
+      } else
+      if (total > 1000){
+        achieveRef.update({
+          plat: 0,
+          diamond: 0,
+          gold: 0,
+          silver: 0,
+          bronze: 0
+        });
+      } else{
+        achieveRef.update({
+          plat: 0,
+          diamond: 0,
+          gold: 0,
+          silver: 0,
+          bronze: 0
+        });
+      }
+      //end of achievements implimentation
     }
   });
 
