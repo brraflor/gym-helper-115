@@ -240,6 +240,7 @@ app.post("/updatejournal", (req, res) => {
         achieveRef.update({
           [exercise]: 0
         });
+      }
       //end achievement implimentation
 
     } else {
@@ -281,6 +282,7 @@ app.post("/updatejournal", (req, res) => {
         achieveRef.update({
           [exercise]: 0
         });
+      }
       //end of achievements implimentation
     }
   });
