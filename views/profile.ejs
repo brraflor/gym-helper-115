@@ -1,31 +1,7 @@
 <!DOCTYPE html>
-<script>
-initApp = function() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      var username = user.displayName;
-      var email = user.email;
-      var uid = user.uid;
-      console.log(uid)
-      user.getIdToken().then(function(accessToken) {
-        document.getElementById('uid').value = uid;
-      });
-      firebase.database().ref('users/'+ uid).update({
-        username: username,
-        email: email
-      })
-    } else {
-      // User is signed out.
-    }
-  }, function(error) {
-    console.log(error);
-  });
-};
-window.addEventListener('load', function() {
-  initApp()
-});
-</script>
+
+
+
 <html>
   <head>
     <title>Profile</title>
@@ -69,7 +45,7 @@ window.addEventListener('load', function() {
     <div class="key_profiles">
       <div class="key_profile">
         <img class="profile_label" src="/images/age.png" />
-        <p id="age">20</p>
+        <p id="age"></p>
       </div>
       <div class="key_profile">
           <img class="profile_label" src="/images/gender.svg" />
@@ -144,7 +120,7 @@ window.addEventListener('load', function() {
               <img src="/images/address.png" title ="address-icon" class="icon" />
           </td>
           <td colspan="2">
-              <p class="subtitle">Address:</p>
+              <p class="subtitle" id ="address"></p>
           </td>
           <td>
               <div id="address"></p>
@@ -153,4 +129,68 @@ window.addEventListener('load', function() {
       </table>
     </div>
   </div>
+  <script>
+  initApp = function() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var username = user.displayName;
+        var email = user.email;
+        var uid = user.uid;
+        console.log(uid)
+        user.getIdToken().then(function(accessToken) {
+        document.getElementById('uid').value = uid;
+        });
+        firebase.database().ref('users/'+ uid).update({
+          username: username,
+          email: email
+        })
+      } else {
+        // User is signed out.
+      }
+    }, function(error) {
+      console.log(error);
+    });
+  };
+  window.addEventListener('load', function() {
+    initApp()
+  });
+  </script>
+  <script>
+  initApp = function() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var uid = user.uid;
+        console.log("the id is " + uid);
+
+        firebase.database().ref('users/' + uid + '/profile').once('value').then(function(snapshot) {
+          address = snapshot.child('address').val();
+          age = snapshot.child('age').val();
+
+          console.log(age);
+
+        });
+
+
+      } else {
+        console.log('user is signed out');
+        // User is signed out.
+      }
+    }, function(error) {
+      console.log(error);
+    });
+  };
+
+  window.addEventListener('load', function() {
+    initApp()
+  });
+  </script>
+
+  <script>
+    document.getElementById("age").innerHTML = age;
+    document.getElementById("address").textContent = address;
+  </script>
+
 <%include partials/footer%>
