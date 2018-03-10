@@ -30,21 +30,55 @@ initApp = function() {
         /*document.write('<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"/>');*/
         //end style
 
-        document.write('<body><div class="page">' + `<% include partials/nav %>` + '<div class="box"><div class="head">');
+        document.write('<body><div class="page">' + `<% include partials/nav %>`);
+        document.write(`
+        <div id="leaderboard_head">
+          <div class="head">
+            <div>
+              <p id="leaderboard_rank_title">Rank</p>
+              <div class="leaderboard">
+                <h2 class="leaderboard_text" id="name1">UID</h2>
+              </div>
+              <div class="leaderboard_sets">
+                <h2 class="leaderboard_text" id="sets">Number of sets</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        `);
+        document.write('<div class="box"><div class="head">');
 
         refLeaderboard.orderByValue().on("value", function(snapshot){
           const val = [];
           const key = [];
           var rankOfUsersInLeaderboard = 0;
-          
 
-          
           snapshot.forEach(function(data) {
-            rankOfUsersInLeaderboard = rankOfUsersInLeaderboard + 1;
             val.push(data.val());
             key.push(data.key);
-            document.write('<div><p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ data.key + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + data.val() + '</h2></div></div>');
-          });
+          })
+
+          for (i = val.length-1; i>=0; i--){
+            rankOfUsersInLeaderboard = rankOfUsersInLeaderboard + 1;
+            var rankSymbol = '<p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p>';
+
+            //decide the rank symbol (number/medal)
+            if (rankOfUsersInLeaderboard == 1){
+              rankSymbol = '<img class="leaderboard_rank_icon" src="/images/gold_medal.png" title ="gold-medal-icon"/>';
+            }
+            else if (rankOfUsersInLeaderboard == 2){
+              rankSymbol = '<img class="leaderboard_rank_icon" src="/images/silver_medal.png" title ="gold-medal-icon"/>';
+            }
+            else if (rankOfUsersInLeaderboard == 3){
+              rankSymbol = '<img class="leaderboard_rank_icon" src="/images/copper_medal.png" title ="gold-medal-icon"/>';
+            }
+            else {
+              rankSymbol = '<p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p>';
+            }
+            document.write('<div>' + rankSymbol + '<div class="leaderboard"><h2 class="leaderboard_text">'+ 
+                key[i] + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + 
+                  val[i] + '</h2></div></div>');
+          }
           
           //Trash code
           /*
@@ -113,6 +147,20 @@ window.addEventListener('load', function() {
   <body>
     <div class="page">
       <% include partials/nav %>
+      <div id="leaderboard_head">
+        <div class="head">
+          <div>
+            <p id="leaderboard_rank_title">Rank</p>
+            <div class="leaderboard">
+              <h2 class="leaderboard_text" id="name1">UID</h2>
+            </div>
+            <div class="leaderboard_sets">
+              <h2 class="leaderboard_text" id="sets">Number of sets</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="box">
         <div class="head">
           <div id="rank1">
