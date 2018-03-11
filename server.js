@@ -131,7 +131,10 @@ var today = new Date();
   tpdRef.update({
     [today]: bmi
   });
-
+  var tpdweight = firebase.database().ref('users/' + uid + '/journal/weight/tpd/');
+  tpdweight.update({
+    [today]: weight
+  })
 
   res.render('home');
 });
