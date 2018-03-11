@@ -82,6 +82,31 @@ window.addEventListener('load', function() {
       </div>
 
 
+     <form class="mainBody" method="post" action="/fitnessdata">
+        <div class="form-row align-items-center">
+          <div class="sub-body">
+            <div class="col-auto my-1">
+              <img src="/images/exercise.jpg" id="exercise" title ="exercise_picture" width=70px />
+              <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Strength Training &nbsp;</label>
+              <select id="select-exercise"class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                  <optgroup>
+                    <option selected>Choose an Exercise</option>
+                    <option value="pushups">Pushups</option>
+                    <option value="pullups">Pullups</option>
+                    <option value="situps">Situps</option>
+                  </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="sub-body">
+            <input name="userid" type="hidden" class="form-control" id="uid" >
+            <button class="submit-button" type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+
+
 
   <div style="width: 400px;;border:1px solid red">
     <canvas id="line" width="400" height="400"></canvas>
