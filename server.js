@@ -61,15 +61,24 @@ app.get('/updateBMI', function(req, res){
   res.render('updateBMI');
 });
 
-app.post("/updatejournal2", (req, res) => {
-  var data = req.body;
-
-  console.log(data);
-  res.render('journal');
-});
 app.get('/fitnessdata', function(req, res){
   var uid = 'kydRpQYVz8OlqnqLLppJtxC8OuH2'
   var exercise = 'pushups'
+  var xAxis = []
+  var data = []
+  var leadsRef = firebase.database().ref('users/' +uid+ '/journal/' +exercise+'/tpd');
+  leadsRef.once("value").then(function(snapshot) {
+        snapshot.forEach(function(child) {
+          xAxis.push(child.key);
+          data.push(child.val());
+        });
+        res.render('fitnessdata', {xAxis: xAxis, data:data});
+      });
+});
+app.post('/fitnessdata', function(req, res) {
+  var data = req.body;
+  var uid = data.userid
+  var exercise = data.exercise
   var xAxis = []
   var data = []
   var leadsRef = firebase.database().ref('users/' +uid+ '/journal/' +exercise+'/tpd');
@@ -307,6 +316,141 @@ app.post("/updatejournal", (req, res) => {
 
   res.render("journal");
 
+});
+
+app.post("/updatejournal2", (req, res) => {
+  var data = req.body;
+  var distance = data.miles;
+  var hours = data.Hours;
+  var minutes = data.Minutes;
+  var uid = data.userid;
+  var username = data.displayName;
+  var exercise = data.exercise;
+  console.log(data);
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+  var hr = today.getHours();
+  var min = today.getMinutes();
+  var sec = today.getSeconds();
+  if(dd<10) {
+      dd = '0'+dd
+  }
+  if(mm<10) {
+      mm = '0'+mm
+  }
+  today = mm + '_' + dd + '_' + yyyy;
+  var todayFull = mm + '_' + dd + '_' + yyyy + ' ' + hr + ':' + min + ':' + sec;
+
+  var timeInHour = parseInt(hours) + (parseInt(minutes)/60);
+  var workoutPace = parseInt(distance) / timeInHour;
+
+  firebase.database().ref('users/' + uid + '/journal/' + exercise +'/'+ todayFull).set({
+    distance: distance,
+    time: timeInHour,
+    workoutPace: workoutPace
+  });
+
+  var tpdRef = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/tpd/');
+  tpdRef.update({
+    [todayFull]: workoutPace
+  });
+
+  var ref = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total');
+  var totals = firebase.database().ref('exercises/' + exercise);
+  ref.once("value").then(function(snapshot) {
+    //console.log('before if statement in total');
+    //console.log(snapshot.child('total'));
+   if(snapshot.child('total').exists()) {
+      var pasttotal = snapshot.child('total').val();
+      var total = parseInt(pasttotal) + (parseInt(distance));
+      firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total').set({
+        total: total
+      });
+      firebase.database().ref('leaderboard/' + exercise).update({
+        [username]: total
+      });
+      //impliment achievements
+      var achieveRef = firebase.database().ref('users/' + uid + '/achievements');
+      if (total > 100000) {
+        achieveRef.update({
+          [exercise]: 5
+        });
+      } else
+      if (total > 50000){
+        achieveRef.update({
+          [exercise]: 4
+        });
+      } else
+      if (total > 10000){
+        achieveRef.update({
+          [exercise]: 3
+        });
+      } else
+      if (total > 5000){
+        achieveRef.update({
+          [exercise]: 2
+        });
+      } else
+      if (total > 1000){
+        achieveRef.update({
+          [exercise]: 1
+        });
+      } else{
+        achieveRef.update({
+          [exercise]: 0
+        });
+      }
+      //end achievement implimentation
+
+    } else {
+      //console.log('in else');
+      var total = (parseInt(distance));
+      firebase.database().ref('users/' + uid + '/journal/' + exercise + '/total').set({
+        //distance
+        total: total
+      });
+      firebase.database().ref('leaderboard/' + exercise).set({
+        [username]: total
+      });
+      //impliment achievements
+      var achieveRef = firebase.database().ref('users/' + uid + '/achievements');
+      if (total > 100000) {
+        achieveRef.update({
+          [exercise]: 5
+        });
+      } else
+      if (total > 50000){
+        achieveRef.update({
+          [exercise]: 4
+        });
+      } else
+      if (total > 10000){
+        achieveRef.update({
+          [exercise]: 3
+        });
+      } else
+      if (total > 5000){
+        achieveRef.update({
+          [exercise]: 2
+        });
+      } else
+      if (total > 1000){
+        achieveRef.update({
+          [exercise]: 1
+        });
+      } else{
+        achieveRef.update({
+          [exercise]: 0
+        });
+      }
+      //end of achievements implimentation
+    }
+  });
+
+
+  res.render('journal');
 });
 
 app.get('/profile', function(req,res){
