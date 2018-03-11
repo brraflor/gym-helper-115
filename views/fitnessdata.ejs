@@ -32,8 +32,14 @@ initApp = function() {
       uid = user.uid;
       var phoneNumber = user.phoneNumber;
       var providerData = user.providerData;
+      document.getElementById('name').textContent = displayName;
+      firebase.database().ref('users/' + uid ).once('value').then(function(snapshot) {
+          profileImg = snapshot.child('profile_picture').val();
+          document.getElementById("profile_pic").src = profileImg;
+      }); 
       user.getIdToken().then(function(accessToken) {
         document.getElementById('uid').value = uid;
+	document.getElementById('name').textContent = displayName;
       });
     }
  else {
@@ -58,8 +64,8 @@ window.addEventListener('load', function() {
       <table class="head">
         <tr>
           <td rowspan="2">
-              <img src=profile_picture class="profile" alt ="profile_picture" title ="profile_picture" width=100px />
-          </td>
+          <img id ="profile_pic"  class="profile" alt ="profile_picture" width=100px />
+	  </td>
           <td>
             <h2 id="name">Name</h2>
           </td>
