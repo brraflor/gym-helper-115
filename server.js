@@ -75,6 +75,21 @@ app.get('/fitnessdata', function(req, res){
         res.render('fitnessdata', {xAxis: xAxis, data:data});
       });
 });
+app.post('/fitnessdata', function(req, res) {
+  var data = req.body;
+  var uid = data.userid
+  var exercise = data.exercise
+  var xAxis = []
+  var data = []
+  var leadsRef = firebase.database().ref('users/' +uid+ '/journal/' +exercise+'/tpd');
+  leadsRef.once("value").then(function(snapshot) {
+        snapshot.forEach(function(child) {
+          xAxis.push(child.key);
+          data.push(child.val());
+        });
+        res.render('fitnessdata', {xAxis: xAxis, data:data});
+      });
+});
 app.post("/updateheightweight", (req, res) => {
   var data = req.body;
   var height = data.height;
