@@ -5,11 +5,9 @@
     <% include partials/header %>
     <title>User Journal</title>
   </head>
-  <h2 id="db">hi</h2>
   <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
   <script src="js/initFirebase.js" ></script>
   <script src="js/journaldata.js" ></script>
-  <script src=js/journaldata.js></script>
   <!-- Style  -->
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/data.css">
@@ -20,7 +18,9 @@
   <!-- End-Style  -->
 
 <script>
-var uid = 0
+var exercise = 'pushups'
+var uid = 0;
+var ready = false;
 initApp = function() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -34,39 +34,42 @@ initApp = function() {
       var providerData = user.providerData;
       user.getIdToken().then(function(accessToken) {
         document.getElementById('uid').value = uid;
-      
       });
-    } else {
+      var leadsRef = firebase.database().ref('users/' +uid+ '/journal/' +exercise+'/tpd');
+      var exerciseData = [];
+      var xAxis = [];
+       leadsRef.once("value").then(function(snapshot) {
+        snapshot.forEach(function(child) {
+          xAxis.push(child.key);
+	  exerciseData.push(child.val());
+          console.log(exerciseData);
+	});
+      });
+      ready = true;
+    }
+ else {
       // User is signed out.
     }
   }, function(error) {
     console.log(error);
   });
 };
+
 window.addEventListener('load', function() {
   initApp()
+  makeGraph()
 });
-var ref = firebase.database().ref('users/' + uid + '/journal/' + 'pushups');
-  console.log(ref)
-  var totals = firebase.database().ref('exercises/' + exercise);
-  document.getElementById('db').textContent = ref;
+console.log('myUid= '+uid)
 
 
-
-    var xvalue= snapshot.child('total').val();
-    console.log("xvalue: "+ xvalue)
-
-
-
-
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+ var lineG = document.getElementById("line");
+ var line = new Chart(lineG, {
+     type: 'line',
+     data: {
+        labels: xAxis,
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: exerciseData,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -96,17 +99,15 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
-
-
-
-
-
-
-
-
 </script>
-<h2 id="db"></h2>
+
+
+
+
+
+
+
+<h2 id="uid">Hello</h2>
 
   <body>
     <div class="page">
@@ -138,9 +139,7 @@ var myChart = new Chart(ctx, {
   <canvas id="myChart" width="400" height="400"></canvas>
 <script>
   var ref = firebase.database().ref('users/' + uid + '/journal/' + exercise);
-  console.log(ref)
   var totals = firebase.database().ref('exercises/' + exercise);
-  document.getElementById('db').textContent = ref;
         
 
 
@@ -188,8 +187,11 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+
   <div style="width: 400px;;border:1px solid red">
     <canvas id="line" width="400" height="400"></canvas>
+  </div>
+<!--
 <script>
 var lineG = document.getElementById("line");
 var line = new Chart(lineG, {
@@ -232,8 +234,14 @@ var line = new Chart(lineG, {
   </div>
 </div>
 
+-->
+
+
 <div style="width: 400px;">
   <canvas id="yChart" width="400" height="400"></canvas>
+
+</div>
+<!--
 <script>
 var tx = document.getElementById("yChart");
 var yChart = new Chart(tx, {
@@ -274,9 +282,8 @@ var yChart = new Chart(tx, {
 });
 </script>
 </div>
-      <!-- End-Test -->
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
+--> 
+   <!-- End-Test -->
     </div>
   </body>
 </html>
