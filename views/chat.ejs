@@ -14,6 +14,8 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <!-- End-Style  -->
 </head>
+
+   <!-- Group Selection box  -->
 <body ng-controller="ChatController">
 
     <div class="container">
@@ -24,9 +26,9 @@
   <li> <a href="#"ng-click="clicked(3)"><img class="chatImg" src="images/bulk.jpeg"  /></a></li>
   <li> <a href="#" ng-click="clicked(4)"><img class="chatImg" src="images/yoga.jpeg"  /></a></li>
   <li> <a href="#" ng-click="clicked(5)"><img class="chatImg" src="images/food.jpeg"  /></a></li>
-<!--   <li> <a href="#" ng-click="clicked(6)">Private</a></li> -->
     </ul>
-
+    <!-- End-Group Selection box > -->
+    <!-- Chat box  -->
         <div class="panel panel-primary">
             <div id="chatPanel" class="panel-heading">Chat</div>
             <div class="panel-body">
@@ -36,14 +38,12 @@
                     <input type="text" class="form-control" placeholder="Message here..." ng-model="messageText">
                 </div>
                 <button type="submit" class="btn" ng-click="send()">Send</button>
-                <!--
-                <button type="submit" class="btn btn-default" ng-click="sendFriend()">Send to Friend</button> -->
             </div>
         </div>
+        <!-- End-Chat box  -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
         <script src="js/app.js"></script>
         <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-        <script src="js/initFirebase.js"></script>
 
 <% include partials/footer %>

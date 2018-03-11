@@ -4,12 +4,12 @@ var ref = null
 
 
 app.controller('ChatController', function($scope, $firebaseArray) {
-    
+    // Ref with Group number
     ref = firebase.database().ref().child('chat/'+ "group"+ groupNum +'/messages');
     var auth = firebase.auth();
     auth.onAuthStateChanged(function(user) {
   	var user = firebase.auth().currentUser;
-	var name, email;
+	  var name, email;
 
 
 	if (user != null) {
@@ -20,8 +20,8 @@ app.controller('ChatController', function($scope, $firebaseArray) {
  		 }
 	});
 
-    // if(ref == firebase.database().ref().child('chat/'+ "group"+ groupNum +'/messages')){  //check for public group 
-    //     $scope.messages = $firebaseArray(ref); 
+    // if(ref == firebase.database().ref().child('chat/'+ "group"+ groupNum +'/messages')){  //check for public group
+    //     $scope.messages = $firebaseArray(ref);
     //     }
     //     else{
     //         ref = firebase.database().ref().child('chat/group6/'+firebase.auth().currentUser.displayName+'/messages')  //enter private group
@@ -29,17 +29,17 @@ app.controller('ChatController', function($scope, $firebaseArray) {
     // }
         // console.log("groupNum: "+ groupNum + " ref: "+ ref) for debug use
 
-
+    //send button on click
     $scope.send = function() {
     	var currentuser = firebase.auth().currentUser;
         $scope.messages.$add({
-        	name: currentuser.displayName, 
+        	name: currentuser.displayName,
             message: $scope.messageText,
             date: Date.now(),
         })
     }
 
-
+    //change the groupnumber 
     $scope.clicked = function(id){
         groupNum = id,
         ref = firebase.database().ref().child('chat/'+ "group"+ groupNum +'/messages');
@@ -59,4 +59,3 @@ app.controller('ChatController', function($scope, $firebaseArray) {
 
 
 })
-    
