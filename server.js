@@ -52,9 +52,6 @@ app.get('/chat', function(req, res){
   res.render('chat');
 });
 
-app.get('/fitnessdata', function(req, res){
-  res.render('fitnessdata');
-});
 
 app.get('/leaderboard', function(req, res){
   res.render('leaderboard');
@@ -70,7 +67,20 @@ app.post("/updatejournal2", (req, res) => {
   console.log(data);
   res.render('journal');
 });
-
+app.get('/fitnessdata', function(req, res){
+  var uid = 'kydRpQYVz8OlqnqLLppJtxC8OuH2'
+  var exercise = 'pushups'
+  var xAxis = []
+  var data = []
+  var leadsRef = firebase.database().ref('users/' +uid+ '/journal/' +exercise+'/tpd');
+  leadsRef.once("value").then(function(snapshot) {
+        snapshot.forEach(function(child) {
+          xAxis.push(child.key);
+          data.push(child.val());
+        });
+        res.render('fitnessdata', {xAxis: xAxis, data:data});
+      });
+});
 app.post("/updateheightweight", (req, res) => {
   var data = req.body;
   var height = data.height;
