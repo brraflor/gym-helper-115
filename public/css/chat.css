@@ -10,7 +10,12 @@
 }
 
 .chatImg{
-   border-radius: 25px;
-   height: 128px;
-   width: 128px;
+  border-radius: 25px;
+  height: 128px;
+  width: 128px;
+}
+
+.chatGroupText{
+  width: 128px;
+  text-align: center;
 }
