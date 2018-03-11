@@ -214,13 +214,19 @@
             var achievementIconSrc = "/images/phone.png";
 
             if (achievementExerciseLevel == 1) {
-              achievementIconSrc = "/images/copper_medal.png";
+              achievementIconSrc = "/images/medal/copper_medal.png";
             }
             else if (achievementExerciseLevel == 2) {
-              achievementIconSrc = "/images/silver_medal.png";
+              achievementIconSrc = "/images/medal/silver_medal.png";
             }
             else if (achievementExerciseLevel == 3) {
-              achievementIconSrc = "/images/gold_medal.png";
+              achievementIconSrc = "/images/medal/gold_medal.png";
+            }
+            else if (achievementExerciseLevel == 4) {
+              achievementIconSrc = "/images/medal/plat_medal.jpg";
+            }
+            else if (achievementExerciseLevel == 5) {
+              achievementIconSrc = "/images/medal/diamond_medal.jpg";
             }
 
             document.getElementById('achievementLevel').src = achievementIconSrc;
