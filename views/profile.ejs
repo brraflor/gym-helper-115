@@ -182,7 +182,7 @@
           console.log(age);
         });
 
-        firebase.database().ref('users/' + uid +'/bodyinfo').once('value').then(function(snapshot) {
+        firebase.database().ref('users/' + uid +'/profile/bodyinfo').once('value').then(function(snapshot) {
           height = snapshot.child('height').val();
           weight = snapshot.child('weight').val();
 
