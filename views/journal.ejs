@@ -1,52 +1,18 @@
 <!DOCTYPE html>
-<script>
-initApp = function() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var uid = user.uid;
-      var phoneNumber = user.phoneNumber;
-      var providerData = user.providerData;
-      console.log(uid)
-      user.getIdToken().then(function(accessToken) {
-        document.getElementById('uid').value = uid;
-        document.getElementById('displayName').value = displayName;
-        document.getElementById('displayName2').value = displayName;
-        document.getElementById('uid2').value = uid;
-      });
-
-    } else {
-      // User is signed out.
-    }
-  }, function(error) {
-    console.log(error);
-  });
-};
-window.addEventListener('load', function() {
-  initApp()
-});
-</script>
 <html>
   <head>
     <% include partials/header %>
     <title>User Journal</title>
   </head>
-  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-  <script src="js/initFirebase.js" ></script>
+
   <!-- Style  -->
   <link rel="stylesheet" href="/css/nav.css">
-  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <!-- End-Style  -->
+
   <body>
     <div class="page">
       <% include partials/nav %>
-
-
+      
 <!-- sets section -->
       <p>&nbsp;</p>
       <form class="mainBody" method="post" action="/updatejournal">
@@ -85,7 +51,6 @@ window.addEventListener('load', function() {
       </form>
 
 <!-- distance section -->
-
       <form class="mainBody" method="post" action="/updatejournal2">
         <div class="form-row align-items-center">
           <div class="sub-body">
@@ -122,5 +87,39 @@ window.addEventListener('load', function() {
         </div>
       </form>
     </div>
-  </body>
-</html>
+
+<!-- Firebase Auth -->
+    <script>
+    initApp = function() {
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var uid = user.uid;
+          var phoneNumber = user.phoneNumber;
+          var providerData = user.providerData;
+          console.log(uid)
+          user.getIdToken().then(function(accessToken) {
+            document.getElementById('uid').value = uid;
+            document.getElementById('displayName').value = displayName;
+            document.getElementById('displayName2').value = displayName;
+            document.getElementById('uid2').value = uid;
+          });
+
+        } else {
+          // User is signed out.
+        }
+      }, function(error) {
+        console.log(error);
+      });
+    };
+    window.addEventListener('load', function() {
+      initApp()
+    });
+    </script>
+    <!-- End-Firebase Auth -->
+
+<% include partials/footer %>
