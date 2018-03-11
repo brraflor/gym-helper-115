@@ -5,25 +5,16 @@
     <title>User Journal</title>
   </head>
 
-
-
-
-
   <!-- Style  -->
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/data.css">
-  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <!-- End-Style  -->
-
-
-
 
   <body>
     <div class="page">
       <% include partials/nav %>
+
       <div class="box">
       <table class="head">
         <tr>
@@ -34,14 +25,6 @@
             <h2 id="name">Name</h2>
           </td>
         </tr>
-        <tr>
-            <td>
-              <p>Achievement&nbsp;&nbsp;&nbsp;</p>
-            </td>
-            <td>
-              <div id="achievement">Achievement</p>
-            </td>
-        </tr>
       </table>
       </div>
 
@@ -51,7 +34,7 @@
           <div class="sub-body">
             <div class="col-auto my-1">
               <img src="/images/exercise.jpg" id="exercise" title ="exercise_picture" width=70px />
-              <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Strength Training &nbsp;</label>
+              <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Display Data &nbsp;</label>
               <select id="select-exercise"class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                   <optgroup>
                     <option selected>Squats</option>
@@ -81,7 +64,8 @@
 
   <script src="js/initFirebase.js" ></script>
   <script src="js/journaldata.js" ></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<!-- Firebase Auth -->
   <script>
   var exercise = 'pushups'
   var uid = 0;
@@ -120,7 +104,9 @@
     makeGraph()
   });
   </script>
+<!-- End-Firebase Auth -->
 
+<!-- Chart JS -->
 <script>
 var data = <%- JSON.stringify(data) %>;
 var xAxis = <%- JSON.stringify(xAxis) %>;
@@ -179,9 +165,9 @@ var line = new Chart(lineG, {
     }
 });
 </script>
-
+<!-- End-Chart JS -->
   </div>
 </div>
     </div>
-  </body>
-</html>
+
+<% include partials/footer %>
