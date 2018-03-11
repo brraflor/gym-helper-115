@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <% include partials/header %>
     <title>User Journal</title>
   </head>
-  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-  <script src="js/initFirebase.js" ></script>
-  <script src="js/journaldata.js" ></script>
+
+
+
+
+
   <!-- Style  -->
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/data.css">
@@ -17,44 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <!-- End-Style  -->
 
-<script>
-var exercise = 'pushups'
-var uid = 0;
-var ready = false;
-initApp = function() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      uid = user.uid;
-      var phoneNumber = user.phoneNumber;
-      var providerData = user.providerData;
-      document.getElementById('name').textContent = displayName;
-      firebase.database().ref('users/' + uid ).once('value').then(function(snapshot) {
-          profileImg = snapshot.child('profile_picture').val();
-          document.getElementById("profile_pic").src = profileImg;
-      }); 
-      user.getIdToken().then(function(accessToken) {
-        document.getElementById('uid').value = uid;
-	document.getElementById('name').textContent = displayName;
-      });
-    }
- else {
-      // User is signed out.
-    }
-  }, function(error) {
-    console.log(error);
-  });
-};
 
-window.addEventListener('load', function() {
-  initApp()
-  makeGraph()
-});
-</script>
 
 
   <body>
@@ -90,7 +54,7 @@ window.addEventListener('load', function() {
               <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Strength Training &nbsp;</label>
               <select id="select-exercise"class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                   <optgroup>
-                    <option selected>Choose an Exercise</option>
+                    <option selected>Squats</option>
                     <option value="pushups">Pushups</option>
                     <option value="pullups">Pullups</option>
                     <option value="situps">Situps</option>
@@ -115,6 +79,47 @@ window.addEventListener('load', function() {
     <canvas id="line" width="400" height="400"></canvas>
   </div>
 
+  <script src="js/initFirebase.js" ></script>
+  <script src="js/journaldata.js" ></script>
+
+  <script>
+  var exercise = 'pushups'
+  var uid = 0;
+  var ready = false;
+  initApp = function() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        uid = user.uid;
+        var phoneNumber = user.phoneNumber;
+        var providerData = user.providerData;
+        document.getElementById('name').textContent = displayName;
+        firebase.database().ref('users/' + uid ).once('value').then(function(snapshot) {
+            profileImg = snapshot.child('profile_picture').val();
+            document.getElementById("profile_pic").src = profileImg;
+        });
+        user.getIdToken().then(function(accessToken) {
+          document.getElementById('uid').value = uid;
+  	document.getElementById('name').textContent = displayName;
+        });
+      }
+   else {
+        // User is signed out.
+      }
+    }, function(error) {
+      console.log(error);
+    });
+  };
+
+  window.addEventListener('load', function() {
+    initApp()
+    makeGraph()
+  });
+  </script>
 
 <script>
 var data = <%- JSON.stringify(data) %>;
@@ -125,7 +130,7 @@ var lineG = document.getElementById("line");
 if (exercise == 'running') {
    var caption = 'Pace per session'
 }else if (exercise == 'swimming') {
-   var caption = 'Pace per session' 
+   var caption = 'Pace per session'
 }else if (exercise == 'walking') {
    var caption = 'Pace per session'
 }else if (exercise == 'pushups') {
@@ -174,11 +179,9 @@ var line = new Chart(lineG, {
     }
 });
 </script>
+
   </div>
 </div>
-
-
-   <!-- End-Test -->
     </div>
   </body>
 </html>
