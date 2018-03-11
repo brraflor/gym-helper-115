@@ -1,4 +1,53 @@
 <!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/header %>
+    <title>User Journal</title>
+  </head>
+
+  <!-- Style  -->
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/data.css">
+  <!-- End-Style  -->
+
+  <body>
+    <!-- Rank Box -->
+    <div class="page">
+      <% include partials/nav %>
+      <div id="leaderboard_head">
+        <div class="head">
+          <div>
+            <p id="leaderboard_rank_title">Rank</p>
+            <div class="leaderboard">
+              <h2 class="leaderboard_text" id="name1">UID</h2>
+            </div>
+            <div class="leaderboard_sets">
+              <h2 class="leaderboard_text" id="sets">Number of sets</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End-Rank Box -->
+
+      <!-- User List -->
+      <div class="box">
+        <div class="head">
+          <div id="rank1">
+            <p class="leaderboard_rank">1</p>
+            <div class="leaderboard">
+              <h2 class="leaderboard_text" id="name1">UID</h2>
+            </div>
+            <div class="leaderboard_sets">
+              <h2 class="leaderboard_text" id="sets">Number of sets</h2>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- End-User List -->
+    
+<!-- Printing Data from Databse -->
 <script>
 initApp = function() {
   firebase.auth().onAuthStateChanged(function(user) {
@@ -8,26 +57,19 @@ initApp = function() {
       var uid = user.uid;
       var exerciseStr = "none";
       var rankOfUsersInLeaderboard = 0;
-      console.log("the id is " + uid);
-      
+
       firebase.database().ref('users/' + uid + '/leaderboard/exercise').once('value').then(function(snapshot) {
         exerciseStr = snapshot.val();
         var refLeaderboard = firebase.database().ref("leaderboard/" + exerciseStr);
 
-        console.log("the exercise is: " + exerciseStr);
-        console.log ('spacer');
-        
+
         //printing the page in js
-        
         document.write(`<html><head><% include partials/header %><title>User Journal</title></head>`);
-        /*document.write('<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"/>');
-        document.write('<script src="js/initFirebase.js"/>');*/
         //Style
-        
+
         document.write('<link rel="stylesheet" href="/css/nav.css">');
         document.write('<link rel="stylesheet" href="/css/data.css">');
         document.write('<link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">');
-        /*document.write('<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"/>');*/
         //end style
 
         document.write('<body><div class="page">' + `<% include partials/nav %>`);
@@ -75,48 +117,17 @@ initApp = function() {
             else {
               rankSymbol = '<p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p>';
             }
-            document.write('<div>' + rankSymbol + '<div class="leaderboard"><h2 class="leaderboard_text">'+ 
-                key[i] + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + 
+            document.write('<div>' + rankSymbol + '<div class="leaderboard"><h2 class="leaderboard_text">'+
+                key[i] + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' +
                   val[i] + '</h2></div></div>');
           }
-          
-          //Trash code
-          /*
-          const userNames = [];
-          var promises = []
-          for (i = val.length-1; i>=0; i--){
-            promises.push(new Promise((resolve, reject) => {
-              firebase.database().ref('users/' + key[i] + '/username').once('value').then(function(snapshotName) {
-                rankOfUsersInLeaderboard = rankOfUsersInLeaderboard+1;
-                userNames.push(snapshotName.val());
-                console.log("the 1st name is: " + snapshotName.val());
-                console.log("the 1st val is: " + val[val.length-rankOfUsersInLeaderboard]);
-                console.log("the index is: " + rankOfUsersInLeaderboard);
-                document.write('<p>hhhhhhh</p>')
-                document.write('<div><p class="leaderboard_rank">' + rankOfUsersInLeaderboard + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ snapshotName.val() + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + val[val.length-1-i] + '</h2></div></div>');
-                resolve(snapshotName.val());
-              });
-            }));
-          }
-
-          Promise.all(promises).then((value) => {
-            for (i = 0; i<val.length; i++){
-              console.log("the name is: " + userNames[i]);
-              document.write('<div><p class="leaderboard_rank">' + i + '</p><div class="leaderboard"><h2 class="leaderboard_text">'+ userNames[i] + '</h2></div><div class="leaderboard_sets"><h2 class="leaderboard_text">' + val[i] + '</h2></div></div>');
-              var newDiv = document.createElement("div"); 
-              var newContent = document.createTextNode(userNames[i]);
-              newDiv.appendChild(newContent);
-              document.body.appendChild(newDiv);
-            }
-          });*/
-
 
           document.write('</div></div><p>&nbsp;</p><p>&nbsp;</p></div>');
           document.write('</body></html>');
-         
+
         });
       });
-      
+
 
     } else {
       console.log('user is signed out');
@@ -131,51 +142,5 @@ window.addEventListener('load', function() {
   initApp()
 });
 </script>
-<html>
-  <head>
-    <% include partials/header %>
-    <title>User Journal</title>
-  </head>
-  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-  <script src="js/initFirebase.js" ></script>
-  <!-- Style  -->
-  <link rel="stylesheet" href="/css/nav.css">
-  <link rel="stylesheet" href="/css/data.css">
-  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-  <!-- End-Style  -->
-  <body>
-    <div class="page">
-      <% include partials/nav %>
-      <div id="leaderboard_head">
-        <div class="head">
-          <div>
-            <p id="leaderboard_rank_title">Rank</p>
-            <div class="leaderboard">
-              <h2 class="leaderboard_text" id="name1">UID</h2>
-            </div>
-            <div class="leaderboard_sets">
-              <h2 class="leaderboard_text" id="sets">Number of sets</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="box">
-        <div class="head">
-          <div id="rank1">
-            <p class="leaderboard_rank">1</p>
-            <div class="leaderboard">
-              <h2 class="leaderboard_text" id="name1">UID</h2>
-            </div>
-            <div class="leaderboard_sets">
-              <h2 class="leaderboard_text" id="sets">Number of sets</h2>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-    </div>
+      <!-- End-Printing Data from Databse -->
 <%include partials/footer%>
