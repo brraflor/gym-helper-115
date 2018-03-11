@@ -64,6 +64,13 @@ app.get('/updateBMI', function(req, res){
   res.render('updateBMI');
 });
 
+app.post("/updatejournal2", (req, res) => {
+  var data = req.body;
+
+  console.log(data);
+  res.render('journal');
+});
+
 app.post("/updateheightweight", (req, res) => {
   var data = req.body;
   var height = data.height;
