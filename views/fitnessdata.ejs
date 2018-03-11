@@ -94,6 +94,9 @@ window.addEventListener('load', function() {
                     <option value="pushups">Pushups</option>
                     <option value="pullups">Pullups</option>
                     <option value="situps">Situps</option>
+                    <option value="running">Running</option>
+                    <option value="swimming">swimming</option>
+		    <option value="walking">Walking</option>
                   </optgroup>
               </select>
             </div>
@@ -116,14 +119,30 @@ window.addEventListener('load', function() {
 <script>
 var data = <%- JSON.stringify(data) %>;
 var xAxis = <%- JSON.stringify(xAxis) %>;
-
+var exercise = <%- JSON.stringify(exercise) %>
 var lineG = document.getElementById("line");
+
+if (exercise == 'running') {
+   var caption = 'Pace per session'
+}else if (exercise == 'swimming') {
+   var caption = 'Pace per session' 
+}else if (exercise == 'walking') {
+   var caption = 'Pace per session'
+}else if (exercise == 'pushups') {
+   var caption = 'Total reps over time'
+}else if (exercise == 'situps') {
+   var caption = 'Total reps over time'
+}else if (exercise == 'situps') {
+   var caption = 'Total reps over time'
+}else {
+   var caption = 'Data'
+}
 var line = new Chart(lineG, {
     type: 'line',
     data: {
         labels: xAxis,
         datasets: [{
-            label: 'Total over time',
+            label: caption ,
             data: data,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

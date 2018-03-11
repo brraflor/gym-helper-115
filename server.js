@@ -72,7 +72,7 @@ app.get('/fitnessdata', function(req, res){
           xAxis.push(child.key);
           data.push(child.val());
         });
-        res.render('fitnessdata', {xAxis: xAxis, data:data});
+        res.render('fitnessdata', {xAxis: xAxis, data:data, exercise:exercise});
       });
 });
 app.post('/fitnessdata', function(req, res) {
@@ -87,7 +87,7 @@ app.post('/fitnessdata', function(req, res) {
           xAxis.push(child.key);
           data.push(child.val());
         });
-        res.render('fitnessdata', {xAxis: xAxis, data:data});
+        res.render('fitnessdata', {xAxis: xAxis, data:data, exercise: exercise});
       });
 });
 app.post("/updateheightweight", (req, res) => {
