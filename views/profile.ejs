@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <title>Profile</title>
     <% include partials/header %>
   </head>
 
-  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-  <script src="js/initFirebase.js" ></script>
-
   <!-- Style  -->
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <!-- End-Style  -->
   <% include partials/nav %>
+
+
 <pid="name"></p>
   <div class="page">
     <p>&nbsp;</p>
+    <!-- User Achievement Box-->
     <div class="box">
     <table class="head">
       <tr>
@@ -40,7 +38,8 @@
       </tr>
     </table>
     </div>
-
+    <!-- End-User Achievement Box-->
+    <!-- Display Info -->
     <div class="key_profiles">
       <div class="key_profile">
         <img class="profile_label" src="/images/age.png" />
@@ -59,7 +58,8 @@
         <p id="weight"></p>
       </div>
     </div>
-
+    <!--End-Display Info -->
+    <!-- Leaderboard -->
     <form method="post" action="/leaderboard" class="profile_leaderboard">
       <input name="userid" type="hidden" id="uid">
       <table>
@@ -89,45 +89,9 @@
           </tr>
         </table>
       </form>
-
-    <!-- <div class="mainBody">
-      <table>
-        <tr>
-          <td>
-            <img src="/images/id.png" title ="id-icon" class="icon" />
-          </td>
-          <td colspan="2">
-              <p class="subtitle">User ID:</p>
-          </td>
-          <td>
-              <div id="uid"></p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img src="/images/phone.png" title ="phone-icon" class="icon" />
-          </td>
-          <td colspan="2">
-              <p class="subtitle">Phone:</p>
-          </td>
-          <td>
-              <div id="phone"></p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-              <img src="/images/address.png" title ="address-icon" class="icon" />
-          </td>
-          <td colspan="2">
-              <p class="subtitle" id ="address"></p>
-          </td>
-          <td>
-              <div id="address"></p>
-          </td>
-        </tr>
-      </table>
-    </div> -->
+      <!-- End-Leaderboard -->
   </div>
+  <!-- Firebase Auth -->
   <script>
   initApp = function() {
     firebase.auth().onAuthStateChanged(function(user) {
@@ -190,20 +154,11 @@
           document.getElementById("weight").innerHTML = weight + " kg";
 
         });
-
-        /*
-        var achievementExercise = ["No Achievement"];
-        var achievementLevel = [0];
-        */
         var achievementRef = firebase.database().ref('users/' + uid + '/achievements');
         var indexOfAchievement = 0;
         achievementRef.orderByValue().once('value').then(function(snapshot) {
           snapshot.forEach(function(data) {
             indexOfAchievement = indexOfAchievement + 1;
-            /*
-            achievementExercise.push(data.key);
-            achievementLevel.push(data.val());
-            */
             var achievementExerciseType = data.key;
             var achievementExerciseLevel = data.val();
 
@@ -233,8 +188,6 @@
           });
         });
 
-
-
       } else {
         console.log('user is signed out');
         // User is signed out.
@@ -248,6 +201,5 @@
     initApp()
   });
   </script>
-
-
+  <!-- End-Firebase Auth -->
 <%include partials/footer%>
