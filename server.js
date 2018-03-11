@@ -110,16 +110,13 @@ var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth()+1; //January is 0!
   var yyyy = today.getFullYear();
-  var hr = today.getHours();
-  var min = today.getMinutes();
-  var sec = today.getSeconds();
-if(dd<10) {
+  if(dd<10) {
     dd = '0'+dd
-}
-if(mm<10) {
+  }
+  if(mm<10) {
     mm = '0'+mm
-}
-today = mm + '_' + dd + '_' + yyyy;
+  }
+  today = mm + '_' + dd + '_' + yyyy;
 
  firebase.database().ref('users/' + uid + '/profile/bodyinfo').update({
     height: height,
@@ -130,9 +127,9 @@ today = mm + '_' + dd + '_' + yyyy;
     femaleIBW: brocaW
   });
 
-  var tpdRef = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/tpd/');
+  var tpdRef = firebase.database().ref('users/' + uid + '/journal/bmi/tpd/');
   tpdRef.update({
-    [today]: workoutPace
+    [today]: bmi
   });
 
 
