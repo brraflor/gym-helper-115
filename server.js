@@ -100,12 +100,27 @@ app.post("/updateheightweight", (req, res) => {
 
   var intHeight = parseInt(height) / 100;
   var intWeight = parseInt(weight);
-  var bmi = (intWeight / intHeight) / intHeight;
+  var bmi = (intWeight / (intHeight * intHeight));
 //broca ideal body weight for gender
   var brocaInt = ((intHeight * 100)-100);
   var brocaM = brocaInt - (brocaInt * .1);
   var brocaW = brocaInt - (brocaInt * .15);
 //IBW = ideal body weight
+var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+  var hr = today.getHours();
+  var min = today.getMinutes();
+  var sec = today.getSeconds();
+if(dd<10) {
+    dd = '0'+dd
+}
+if(mm<10) {
+    mm = '0'+mm
+}
+today = mm + '_' + dd + '_' + yyyy;
+
  firebase.database().ref('users/' + uid + '/profile/bodyinfo').update({
     height: height,
     weight: weight,
@@ -114,6 +129,13 @@ app.post("/updateheightweight", (req, res) => {
     maleIBW: brocaM,
     femaleIBW: brocaW
   });
+
+  var tpdRef = firebase.database().ref('users/' + uid + '/journal/' + exercise + '/tpd/');
+  tpdRef.update({
+    [today]: workoutPace
+  });
+
+
   res.render('home');
 });
 

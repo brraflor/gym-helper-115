@@ -61,7 +61,7 @@
     <!--End-Display Info -->
     <!-- Leaderboard -->
     <form method="post" action="/leaderboard" class="profile_leaderboard">
-      <input name="userid" type="hidden" id="uid">
+      <input name="userid" type="hidden" id="uid2">
       <table>
         <tr>
           <td>
@@ -124,6 +124,9 @@
         // User is signed in.
         var displayName = user.displayName;
         var uid = user.uid;
+        user.getIdToken().then(function(accessToken) {
+          document.getElementById('uid2').value = uid;
+        });
 
         firebase.database().ref('users/' + uid ).once('value').then(function(snapshot) {
           profileImg = snapshot.child('profile_picture').val();
@@ -167,7 +170,7 @@
 
             document.getElementById('achievementExercise').textContent = "Achievenment of " + achievementExerciseType + ": ";
             var achievementIconSrc = "/images/medal/arm.jpg";
-            
+
             if (achievementExerciseLevel == 0) {
               achievementIconSrc = "/images/medal/arm.jpg";
             }
