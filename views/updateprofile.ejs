@@ -1,40 +1,9 @@
 <!DOCTYPE html>
-<script>
-initApp = function() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var uid = user.uid;
-      var phoneNumber = user.phoneNumber;
-      var providerData = user.providerData;
-      console.log(uid)
-      user.getIdToken().then(function(accessToken) {
-        document.getElementById('uid').value = uid;
-      });
-
-    } else {
-      // User is signed out.
-    }
-  }, function(error) {
-    console.log(error);
-  });
-};
-window.addEventListener('load', function() {
-  initApp()
-});
-</script>
 <html>
   <head>
     <title>Information</title>
     <% include partials/header %>
   </head>
-
-<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-<script src="js/initFirebase.js" ></script>
 
 <!-- Style  -->
 <link rel="stylesheet" href="/css/nav.css">
@@ -42,9 +11,8 @@ window.addEventListener('load', function() {
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <!-- End-Style  -->
 
-
   <% include partials/nav %>
-      <!--Sign Up Page -->
+      <!--data input  -->
   <div class="page">
     <p>&nbsp;</p>
     <form class="mainBody" method="post" action="/updateInformation">
@@ -78,13 +46,6 @@ window.addEventListener('load', function() {
             <label for="inputCity">City</label>
             <input name="city" type="text" class="form-control" id="inputCity">
           </div>
-          <!-- <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div> -->
           <div class="form-group col-md-4">
             <label for="inputCity">State</label>
             <input name="state" type="text" class="form-control" id="inputCity">
@@ -99,15 +60,39 @@ window.addEventListener('load', function() {
           </div>
         </div>
       </div>
-        <!-- <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div> -->
   </form>
 </div>
+<!-- End data input -->
+
+<!-- Firebase Auth  -->
+<script>
+initApp = function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      var uid = user.uid;
+      var phoneNumber = user.phoneNumber;
+      var providerData = user.providerData;
+      console.log(uid)
+      user.getIdToken().then(function(accessToken) {
+        document.getElementById('uid').value = uid;
+      });
+
+    } else {
+      // User is signed out.
+    }
+  }, function(error) {
+    console.log(error);
+  });
+};
+window.addEventListener('load', function() {
+  initApp()
+});
+</script>
+<!-- End Firebase Auth -->
   </body>
 </html>
