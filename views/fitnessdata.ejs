@@ -87,6 +87,7 @@
             document.getElementById("profile_pic").src = profileImg;
         });
         user.getIdToken().then(function(accessToken) {
+          console.log(uid);
           document.getElementById('uid').value = uid;
   	document.getElementById('name').textContent = displayName;
         });

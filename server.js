@@ -79,6 +79,7 @@ app.post('/fitnessdata', function(req, res) {
   var data = req.body;
   var uid = data.userid
   var exercise = data.exercise
+  console.log(data);
   var xAxis = []
   var data = []
   var leadsRef = firebase.database().ref('users/' +uid+ '/journal/' +exercise+'/tpd');
@@ -86,7 +87,9 @@ app.post('/fitnessdata', function(req, res) {
         snapshot.forEach(function(child) {
           xAxis.push(child.key);
           data.push(child.val());
+          console.log(data);
         });
+        console.log(data);
         res.render('fitnessdata', {xAxis: xAxis, data:data, exercise: exercise});
       });
 });
