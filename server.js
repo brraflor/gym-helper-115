@@ -4,7 +4,7 @@ var request = require('request');
 var firebase = require("firebase");
 
 
-var port = 8080;
+var port = process.env.PORT || 8080;
 var path = require('path');
 var app = express();
 
