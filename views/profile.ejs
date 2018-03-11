@@ -166,9 +166,12 @@
             console.log("2level" + data.val());
 
             document.getElementById('achievementExercise').textContent = "Achievenment of " + achievementExerciseType + ": ";
-            var achievementIconSrc = "/images/phone.png";
-
-            if (achievementExerciseLevel == 1) {
+            var achievementIconSrc = "/images/medal/arm.jpg";
+            
+            if (achievementExerciseLevel == 0) {
+              achievementIconSrc = "/images/medal/arm.jpg";
+            }
+            else if (achievementExerciseLevel == 1) {
               achievementIconSrc = "/images/medal/copper_medal.png";
             }
             else if (achievementExerciseLevel == 2) {
