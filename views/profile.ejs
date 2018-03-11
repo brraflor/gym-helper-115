@@ -26,15 +26,16 @@
             <img id ="profile_pic"  class="profile" alt ="profile_picture" width=100px />
         </td>
         <td>
-          <h2 id="name"></h2>
+          <h2 id="firstName"></h2>
         </td>
       </tr>
       <tr>
           <td>
-            <p>Achievement&nbsp;&nbsp;&nbsp;</p>
+            <p id="achievementExercise">Achievement&nbsp;&nbsp;&nbsp;</p>
           </td>
           <td>
-            <div id="achievement">Achievement</p>
+              <img id="achievementLevel" class="leaderboard_rank_icon" title ="gold-medal-icon"/>
+              <p ></p>
           </td>
       </tr>
     </table>
@@ -136,9 +137,7 @@
         var email = user.email;
         var uid = user.uid;
         console.log(uid)
-        user.getIdToken().then(function(accessToken) {
-        document.getElementById('uid').value = uid;
-        });
+
         firebase.database().ref('users/'+ uid).update({
           username: username,
           email: email
@@ -178,6 +177,7 @@
 
           document.getElementById("age").innerHTML = age;
           document.getElementById("gender").innerHTML = gender;
+          document.getElementById("firstName").innerHTML = firstName;
 
           console.log(age);
         });
@@ -190,8 +190,42 @@
           document.getElementById("weight").innerHTML = weight;
 
         });
+        
+        /*
+        var achievementExercise = ["No Achievement"];
+        var achievementLevel = [0];
+        */
+        var achievementRef = firebase.database().ref('users/' + uid + '/achievements');
+        var indexOfAchievement = 0;
+        achievementRef.orderByValue().once('value').then(function(snapshot) {
+          snapshot.forEach(function(data) {
+            indexOfAchievement = indexOfAchievement + 1;
+            /*
+            achievementExercise.push(data.key);
+            achievementLevel.push(data.val());
+            */
+            var achievementExerciseType = data.key;
+            var achievementExerciseLevel = data.val();
 
+            console.log("2Achievenment of " + data.key);
+            console.log("2level" + data.val());
 
+            document.getElementById('achievementExercise').textContent = "Achievenment of " + achievementExerciseType + ": ";
+            var achievementIconSrc = "/images/phone.png";
+
+            if (achievementExerciseLevel == 1) {
+              achievementIconSrc = "/images/copper_medal.png";
+            }
+            else if (achievementExerciseLevel == 2) {
+              achievementIconSrc = "/images/silver_medal.png";
+            }
+            else if (achievementExerciseLevel == 3) {
+              achievementIconSrc = "/images/gold_medal.png";
+            }
+
+            document.getElementById('achievementLevel').src = achievementIconSrc;
+          });
+        });
 
 
 
