@@ -8,12 +8,15 @@
   <script src="js/initFirebase.js"></script>
   <script src="js/firebaseinfo.js" ></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+
+
   <!-- Style  -->
+  <link rel="stylesheet" href="/css/login.css">
   <link rel="stylesheet" href="/css/nav.css">
-  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
   <!-- End-Style  -->
+
+<!-- Firebase Login -->
   <script type="text/javascript">
       // FirebaseUI config.
       var uiConfig = {
@@ -33,6 +36,7 @@
       // The start method will wait until the DOM is loaded.
       ui.start('#firebaseui-auth-container', uiConfig);
     </script>
+    <!-- End-Firebase Login -->
   </head>
   <body>
     <nav>
