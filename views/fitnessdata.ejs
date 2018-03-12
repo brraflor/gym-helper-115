@@ -43,6 +43,8 @@
                     <option value="situps">Situps</option>
                     <option value="running">Running</option>
                     <option value="swimming">swimming</option>
+                    <option value="bmi">BMI</option>
+                    <option value="weight">Weight</option>
 		    <option value="walking">Walking</option>
                   </optgroup>
               </select>
@@ -58,7 +60,7 @@
 
 
 
-  <div style="width: 400px;;border:1px solid red">
+  <div style="width: 400px;;border:1px solid red;;margin:auto;;text-align:center">
     <canvas id="line" width="400" height="400"></canvas>
   </div>
 
@@ -122,11 +124,15 @@ if (exercise == 'running') {
    var caption = 'Pace per session'
 }else if (exercise == 'pushups') {
    var caption = 'Total reps over time'
-}else if (exercise == 'situps') {
+}else if (exercise == 'pullups') {
    var caption = 'Total reps over time'
 }else if (exercise == 'situps') {
    var caption = 'Total reps over time'
-}else {
+}else if (exercise == 'bmi') {
+   var caption = 'BMI over time'
+}else if (exercise == 'weight') {
+   var caption = 'Weight over time (kg)'
+}else  {
    var caption = 'Data'
 }
 var line = new Chart(lineG, {
