@@ -37,6 +37,7 @@
               <label class="large-text" class="ex" class="mr-sm-2" for="inlineFormCustomSelect">Display Data &nbsp;</label>
               <select id="select-exercise"class="mid-text" name="exercise" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                   <optgroup>
+                    <option value=""></option>
                     <option value="pushups">Pushups</option>
                     <option value="pullups">Pullups</option>
                     <option value="situps">Situps</option>
@@ -83,6 +84,7 @@
         var phoneNumber = user.phoneNumber;
         var providerData = user.providerData;
         document.getElementById('name').textContent = displayName;
+        document.getElementById('uid').textContent = uid;
         firebase.database().ref('users/' + uid ).once('value').then(function(snapshot) {
             profileImg = snapshot.child('profile_picture').val();
             document.getElementById("profile_pic").src = profileImg;
