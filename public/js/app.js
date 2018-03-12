@@ -11,7 +11,6 @@ app.controller('ChatController', function($scope, $firebaseArray) {
   	var user = firebase.auth().currentUser;
 	  var name, email;
 
-
 	if (user != null) {
  	 name = user.displayName;
 	 email = user.email;
@@ -19,15 +18,7 @@ app.controller('ChatController', function($scope, $firebaseArray) {
    		 // No user is signed in.
  		 }
 	});
-
-    // if(ref == firebase.database().ref().child('chat/'+ "group"+ groupNum +'/messages')){  //check for public group
-    //     $scope.messages = $firebaseArray(ref);
-    //     }
-    //     else{
-    //         ref = firebase.database().ref().child('chat/group6/'+firebase.auth().currentUser.displayName+'/messages')  //enter private group
             $scope.messages = $firebaseArray(ref);
-    // }
-        // console.log("groupNum: "+ groupNum + " ref: "+ ref) for debug use
 
     //send button on click
     $scope.send = function() {
@@ -39,23 +30,11 @@ app.controller('ChatController', function($scope, $firebaseArray) {
         })
     }
 
-    //change the groupnumber 
+    //change the groupnumber
     $scope.clicked = function(id){
         groupNum = id,
         ref = firebase.database().ref().child('chat/'+ "group"+ groupNum +'/messages');
         // console.log("in click groupNum: "+ groupNum + " ref: "+ ref) for debug use
         $scope.messages = $firebaseArray(ref);
     }
-
-    // $scope.sendFriend = function() {
-    //     var name = prompt("Input firend's user name: ");
-    //     var ref = firebase.database().ref().child('chat/group6/' + name + 'group');  //group 6 is special for private chat use
-    //     ref.set({
-    //       'messages': firebase.auth().currentUser.displayName + ' added you as friend. You can chat now!',
-    //  });
-    // }
-
-
-
-
 })
