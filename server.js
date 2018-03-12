@@ -62,7 +62,7 @@ app.get('/updateBMI', function(req, res){
 });
 
 app.get('/fitnessdata', function(req, res){
-  var exercise = 'pushups'
+  var exercise = ' '
   var uid = 123
   var xAxis = []
   var data = []
