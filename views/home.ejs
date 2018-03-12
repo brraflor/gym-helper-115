@@ -23,7 +23,7 @@
   <div class ="home">
     <strong><i class="far fa-lightbulb"></i> Gym Helper</strong>
     <p>A web app building for gym users.</p>
-    <a class="btn btn-primary btn-xl" href="login">SignUp</a>
+    <!-- <a class="btn btn-primary btn-xl" href="login">SignUp</a> -->
   </div>
 </head>
 
@@ -67,7 +67,7 @@ initApp = function() {
       var providerData = user.providerData;
       console.log(uid)
       user.getIdToken().then(function(accessToken) {
-        document.getElementById('uid').textContent = uid;
+  //document.getElementById('uid').textContent = uid;
 	document.getElementById('sign-in-status').textContent = 'Signed in';
 	document.getElementById('name').textContent = displayName;
       });
