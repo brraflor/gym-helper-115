@@ -1,20 +1,33 @@
-
+/*background*/
 html, body {
   width: 100%;
   height: 100%;
 }
-h1, h2 {
-  font-weight: normal;
-  margin: 50px auto;
+.page
+{
+  background-color: rgb(250, 250, 250);
+  height: 100%;
+  overflow: auto;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+/*main boxes*/
+.head{
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.box
+{ 
+  overflow: auto;
+  color: white;
+  font-family: 'Bitter', serif;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2.5px solid rgb(243, 243, 243);
+  background-color:#ff5a00;
+  border-radius: 25px;
+  margin: 20px auto;
 }
+/*inner boxes*/
 .profile {
   padding:3.5px;
   border:4px solid rgb(240, 240, 240);
@@ -58,6 +71,7 @@ li {
   margin: auto;
   background-color:white;
 }
+/*small section of image, text*/
 .profile_label {
   height: 30px;
   margin-left: auto;
@@ -67,24 +81,7 @@ li {
   width: 50px;
   margin-right: 20px;
 }
-.button2 {
-  background-color: #fd7920;
-  border-radius: 25px;
-  float: right;
-  height: 50px;
-  font-size: 20px;
-}
-#leaderboard {
-  margin-top: 8px;
-  display: inline-block;
-  font-size: 20px;
-  color: rgb(250, 250, 250);
-}
-@media screen and (max-width: 800px) {
-  #leaderboard {
-      display: none !important;
-  }
-}
+
 .profile_choose_exercise {
   color: #c72800;
   display: inline-block;
@@ -109,28 +106,12 @@ li {
   margin-bottom: 20px;
   margin-top: 20px;
 }
-.box
-{ 
-  overflow: auto;
-  color: white;
-  font-family: 'Bitter', serif;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  border: 2.5px solid rgb(243, 243, 243);
-  background-color:#ff5a00;
+.button2 {
+  background-color: #fd7920;
   border-radius: 25px;
-  margin: 20px auto;
-}
-.head{
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.page
-{
-  background-color: rgb(250, 250, 250);
-  height: 100%;
-  overflow: auto;
+  float: right;
+  height: 50px;
+  font-size: 20px;
 }
 .large-text {
   font-size: 0.4in;
@@ -169,18 +150,6 @@ blockquote {
 .form-row {
   margin: 20px;
 }
-#select-exercise {
-  width: 200px;
-  height: 30px;
-  margin-bottom:20px;
-  margin-left:20px;
-}
-@media screen and (max-width: 815px) {
-  #select-exercise {
-    width: 80%;
-    margin-left: auto;
-  }
-}
 option {
   font-size: 45px;
 }
@@ -204,14 +173,6 @@ option {
   margin-right: 6.5%;
   display: inline-block;
 }
-#leaderboard_rank_title {
-  width: 25px;
-  margin-left: 3%;
-  margin-right: 6.5%;
-  display: inline-block;
-  font-size: 20px;
-}
-
 .leaderboard {
   width: 60%;
   display: inline-block;
@@ -236,6 +197,48 @@ option {
 .leaderboard_text {
   font-size: 20px;
   padding: 10px 0;
+}
+h1, h2 {
+  font-weight: normal;
+  margin: 50px auto;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+#leaderboard {
+  margin-top: 8px;
+  display: inline-block;
+  font-size: 20px;
+  color: rgb(250, 250, 250);
+}
+@media screen and (max-width: 800px) {
+  #leaderboard {
+      display: none !important;
+  }
+}
+#select-exercise {
+  width: 200px;
+  height: 30px;
+  margin-bottom:20px;
+  margin-left:20px;
+}
+@media screen and (max-width: 815px) {
+  #select-exercise {
+    width: 80%;
+    margin-left: auto;
+  }
+}
+#leaderboard_rank_title {
+  width: 25px;
+  margin-left: 3%;
+  margin-right: 6.5%;
+  display: inline-block;
+  font-size: 20px;
 }
 #exercise_str {
   color: white;
