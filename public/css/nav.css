@@ -10,32 +10,6 @@
 li a:hover {
   background-color: #fd7920;
 }
-
-
-/* .ourNav{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: auto;
-  /* background-color: #c72800; */
-  /* background: radial-gradient(#221e22,#fd7920); */
-  /* background-color: #31263e; */
-/* } */
-/* li{
-  float: left;
-
-} */
-/* li a{
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 15px 18px;
-  text-decoration: none;
-
-} */
-
-
-
-/* .active{
-  background-color: orangered ;
-} */
+.navbar-toggler-icon {
+      background-color: white;
+}
