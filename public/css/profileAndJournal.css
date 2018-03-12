@@ -86,6 +86,7 @@ li {
   }
 }
 .profile_choose_exercise {
+  color: #c72800;
   display: inline-block;
   width: 280px;
   font-size: 20px;
@@ -169,7 +170,6 @@ blockquote {
   margin: 20px;
 }
 #select-exercise {
-  color: #c72800;
   width: 200px;
   height: 30px;
   margin-bottom:20px;

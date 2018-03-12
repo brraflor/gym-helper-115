@@ -62,8 +62,8 @@ app.get('/updateBMI', function(req, res){
 });
 
 app.get('/fitnessdata', function(req, res){
-  var uid = 'kydRpQYVz8OlqnqLLppJtxC8OuH2'
   var exercise = 'pushups'
+  var uid = 123
   var xAxis = []
   var data = []
   var leadsRef = firebase.database().ref('users/' +uid+ '/journal/' +exercise+'/tpd');
@@ -79,7 +79,6 @@ app.post('/fitnessdata', function(req, res) {
   var data = req.body;
   var uid = data.userid
   var exercise = data.exercise
-  console.log(data);
   var xAxis = []
   var data = []
   var leadsRef = firebase.database().ref('users/' +uid+ '/journal/' +exercise+'/tpd');
